@@ -59,4 +59,85 @@ console.log(localStorage.getItem('board-swiper-previous'));
 window.addEventListener("load", function() {
 giveEvent();
 giveEvent2();	
-}, false); 
+}, false);
+
+//window.addEventListener('contextmenu', (e) => {e.preventDefault();})
+
+let pointer = document.createElement('div');
+pointer.id = 'board-swiper';
+pointer.style.position = 'fixed';
+//pointer.style.borderRadius = '50%';
+pointer.style.border = 'hsl(0, 0%, 80%)';
+pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
+pointer.style.width = '200px';
+pointer.style.textIndent = '30px';
+pointer.style.height = '20px';
+pointer.style.zIndex = '10000';
+
+let mouseTime = 0
+, mouseTimer
+, posX = 0
+, posY = 0;
+
+window.addEventListener('mousedown', (e) => {
+  mouseTimer = setInterval(() => {
+	mouseTime++;
+//  mouseTime >= 150 ? 	  
+}, 10);
+	posX = e.clientX;
+	posY = e.clientY;  	 
+});
+
+window.addEventListener('contextmenu', (e) => {
+ 
+})
+
+window.addEventListener('mouseup', (e) => {
+  clearInterval(mouseTimer);
+  console.log(mouseTime);
+  console.log(posX, posY);
+  console.log(e.clientX, e.clientY);
+  console.log(e.button)
+  let isSwiped = e.clientX - posX;	
+  if (isSwiped >= 30 || isSwiped <= -30) {
+    	  
+    posX > e.clientX ? console.log('right') : console.log('left');
+/*
+    pointer.style.display = 'block';
+    pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
+    pointer.style.color = 'black'; 
+    pointer.innerText = posX > e.clientX ? '다음 글로 넘어가기' : '이전 글로 돌아가기';	 
+    pointer.style.top = e.clientY + 'px';
+    pointer.style.left = e.clientX + 'px';
+	 */ 
+    document.body.appendChild(pointer);  
+    mouseTime = 0;
+  }
+});
+
+/*
+pointer.addEventListener('mouseover', (e) => {
+ pointer.style.display = 'block';
+ console.log('hello')	
+ pointer.style.backgroundColor = 'hsl(230, 100%, 50%, 0.5)';
+ pointer.style.color = 'white'; 
+})
+
+pointer.addEventListener('mouseout', (e) => {
+  pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
+  pointer.style.color = 'black';
+
+  pointer.animate([
+    { backgroundColor :'hsl(0, 0%, 80%, 0.5)',
+      color :'hsl(0, 0%, 0%, 1)',
+    },
+    { backgroundColor :'hsl(0, 0%, 80%, 0)',
+      color :'hsl(0, 0%, 0%, 0)',
+    },  
+  ], {duration: 500});
+
+  setTimeout(() => {
+  pointer.style.display = 'none';
+  }, 500);
+})
+*/
