@@ -15,23 +15,51 @@ console.log(doc)
  , isNeTitle
  , pHref
  , nHref
- , titleClass
- , targetIdx;	
+ , titleClass;	
  titleClass = doc.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
- targetIdx = parseInt(localStorage.getItem('board-swiper-current-idx'));
- isPreTitle = titleClass[targetIdx + 1] === undefined ? false : true;
- isNeTitle = titleClass[targetIdx - 1] === undefined ? false : true;
- pHref = isPreTitle ? titleClass[targetIdx + 1].href : undefined;
- nHref = isNeTitle ? titleClass[targetIdx - 1].href : undefined;
- localStorage.setItem('board-swiper-previous-idx', (targetIdx - 1));
- localStorage.setItem('board-swiper-next-idx',  (targetIdx + 1));
- localStorage.setItem('board-swiper-previous', pHref);
- localStorage.setItem('board-swiper-next', nHref);
- console.log(titleClass[targetIdx]);	
- console.log(isPreTitle, isNeTitle);	
- console.log(titleClass, targetIdx, pHref, nHref)
 
  aTag3.forEach((aTag) => {
+//	 console.log(aTag)
+    aTag.addEventListener('click', (e) => {	    
+	    setTimeout( () => giveEvent(), 1000);
+	    console.log(e)      	    
+      let getClassName = e.target.className;
+      titleClass = doc.querySelectorAll('.' + getClassName);
+      let eIndex = Array.from(titleClass).indexOf(e.target);
+      console.log(eIndex)	    
+      console.log(titleClass[eIndex + 1]);    
+      console.log(titleClass[eIndex - 1]);   
+      isPreTitle = titleClass[eIndex + 1] === undefined ? false : true;
+      isNeTitle = titleClass[eIndex - 1] === undefined ? false : true;
+      pHref = isPreTitle ? titleClass[eIndex + 1].href : undefined;
+      nHref = isNeTitle ? titleClass[eIndex - 1].href : undefined;
+      console.log(e.target)	    
+     console.log(e)	   
+      console.log(pHref, nHref);    
+      console.log(Array.from(titleClass));	    
+      console.log(titleClass, eIndex, pHref);	  
+      if (titleClass.length > 1) {	    
+      localStorage.setItem('board-swiper-class-name',  getClassName);
+      localStorage.setItem('board-swiper-previous-idx', (eIndex + 1));
+      localStorage.setItem('board-swiper-next-idx',  (eIndex - 1));
+      localStorage.setItem('board-swiper-previous', pHref);
+      localStorage.setItem('board-swiper-next', nHref);
+      }
+   });
+ });
+
+});
+};
+
+function giveEvent2() {
+let aTag1 = document.querySelectorAll('a');
+ let isPreTitle
+ , isNeTitle
+ , pHref
+ , nHref
+ , titleClass;
+
+ aTag1.forEach((aTag) => {
 //	 console.log(aTag)
     aTag.addEventListener('click', (e) => {
 	    setTimeout( () => giveEvent(), 1000);
@@ -39,6 +67,7 @@ console.log(doc)
       let getClassName = e.target.className;
       titleClass = doc.querySelectorAll('.' + getClassName);
       let eIndex = Array.from(titleClass).indexOf(e.target);
+      console.log(eIndex)	    
       console.log(titleClass[eIndex + 1]);    
       console.log(titleClass[eIndex - 1]);   
       isPreTitle = titleClass[eIndex + 1] === undefined ? false : true;
@@ -51,45 +80,11 @@ console.log(doc)
       console.log(Array.from(titleClass));	    
       console.log(titleClass, eIndex, pHref);	   
       localStorage.setItem('board-swiper-class-name',  getClassName);
-      localStorage.setItem('board-swiper-previous-idx', (eIndex - 1));
-      localStorage.setItem('board-swiper-next-idx',  (eIndex + 1));
+      localStorage.setItem('board-swiper-previous-idx', (eIndex + 1));
+      localStorage.setItem('board-swiper-next-idx',  (eIndex - 1));
       localStorage.setItem('board-swiper-previous', pHref);
       localStorage.setItem('board-swiper-next', nHref);
-   });
- });
 
-});
-};
-
-function giveEvent2() {
-let aTag1 = document.querySelectorAll('a');
-
- aTag1.forEach((aTag) => {
-//	 console.log(aTag)
-    aTag.addEventListener('click', (e) => {
-	    setTimeout( () => giveEvent2(), 1000);
-	    console.log(e)
-      let getClassName = e.target.className,
-      titleClass = doc.querySelectorAll('.' + getClassName),
-      isPreTitle,
-      isNeTitle;
-      let eIndex = Array.from(titleClass).indexOf(e.target);
-      console.log(titleClass[eIndex - 1]);    
-      console.log(titleClass[eIndex + 1]);   
-      isPreTitle = titleClass[eIndex - 1] === undefined ? false : true;
-      isNeTitle = titleClass[eIndex + 1] === undefined ? false : true;
-      let pHref = isPreTitle ? titleClass[eIndex + 1].href : undefined;
-      let nHref = isNeTitle ? titleClass[eIndex - 1].href : undefined;
-      console.log(e.target)	    
-      console.log(e)	    
-      console.log(pHref, nHref);    
-      console.log(Array.from(titleClass));	    
-      console.log(titleClass, eIndex, pHref);	   
-      localStorage.setItem('board-swiper-class-name',  getClassName);
-      localStorage.setItem('board-swiper-previous-idx', (eIndex - 1));
-      localStorage.setItem('board-swiper-next-idx',  (eIndex + 1));
-      localStorage.setItem('board-swiper-previous', pHref);
-      localStorage.setItem('board-swiper-next', nHref);
    });
  });
 
@@ -101,11 +96,23 @@ giveEvent();
 giveEvent2();	
 }, false);
 
+window.addEventListener('popstate', function() {
+giveEvent();
+giveEvent2();	
+}, false);
+
+
 function pageMover(element) {
+if (element === null) {return;};	
 let pointer = element.createElement('div')
 , targetUrl
 , targetIdx	
-, targetName;
+, targetName
+, targetClass
+, isPreTitle
+, isNeTitle
+, pHref
+, nHref;
 pointer.id = 'board-swiper';
 pointer.style.position = 'fixed';
 //pointer.style.borderRadius = '50%';
@@ -147,6 +154,7 @@ element.addEventListener('mouseup', (e) => {
     targetName = posX > e.clientX ? 'previous' : 'next'	  
     targetUrl = localStorage.getItem('board-swiper-' + targetName);
     targetIdx = localStorage.getItem('board-swiper-' + targetName + '-idx');
+	  console.log(targetUrl);
 	  console.log(targetIdx)
     pointer.style.display = 'block';
     pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
@@ -166,7 +174,19 @@ pointer.addEventListener('mouseover', (e) => {
  pointer.style.display = 'block';
  pointer.style.backgroundColor = 'hsl(230, 100%, 50%, 0.5)';
  pointer.style.color = 'white';
- console.log(targetIdx);	
+ console.log(targetIdx);
+ targetClass = element.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
+ targetIdx = parseInt(targetIdx);	
+ console.log(targetClass)	
+ isPreTitle = targetClass[targetIdx + 1] === undefined ? false : true;
+ isNeTitle = targetClass[targetIdx - 1] === undefined ? false : true;
+ pHref = isPreTitle ? targetClass[targetIdx + 1].href : undefined;
+ nHref = isNeTitle ? targetClass[targetIdx - 1].href : undefined;	
+ console.log(targetClass[targetIdx + 1], isPreTitle, pHref);	
+ localStorage.setItem('board-swiper-previous-idx', (targetIdx + 1));
+ localStorage.setItem('board-swiper-next-idx',  (targetIdx - 1));
+ localStorage.setItem('board-swiper-previous', pHref);
+ localStorage.setItem('board-swiper-next', nHref);
  targetUrl !== 'undefined' ? localStorage.setItem('board-swiper-current-idx', targetIdx) : false;
  targetUrl !== 'undefined' ? window.open(targetUrl, '_self') : false;	
 })
