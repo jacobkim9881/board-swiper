@@ -96,11 +96,33 @@ giveEvent();
 giveEvent2();	
 }, false);
 
-window.addEventListener('popstate', function() {
+window.addEventListener('click', (e) => {
+console.log(e.button);	
+if (e.button === 3 || e.button ===4) {
 giveEvent();
 giveEvent2();	
-}, false);
 
+}
+
+});
+
+let iframes = document.querySelectorAll('iframe');
+
+console.log(iframes)
+
+iframes.forEach((doc) => {
+console.log(doc)	
+ doc = doc.contentDocument;
+doc.addEventListener('click', (e) => {
+console.log(e.button);	
+if (e.button === 3 || e.button ===4) {
+giveEvent();
+giveEvent2();	
+
+}
+
+});
+})
 
 function pageMover(element) {
 if (element === null) {return;};	
