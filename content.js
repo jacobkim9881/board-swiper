@@ -8,21 +8,51 @@ console.log(iframes)
 iframes.forEach((doc) => {
 console.log(doc)	
  doc = doc.contentDocument;
- let aTag3 = doc.querySelectorAll('a');	
+
+ pageMover(doc);	
+ let aTag3 = doc.querySelectorAll('a')
+ , isPreTitle
+ , isNeTitle
+ , pHref
+ , nHref
+ , titleClass
+ , targetIdx;	
+ titleClass = doc.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
+ targetIdx = parseInt(localStorage.getItem('board-swiper-current-idx'));
+ isPreTitle = titleClass[targetIdx + 1] === undefined ? false : true;
+ isNeTitle = titleClass[targetIdx - 1] === undefined ? false : true;
+ pHref = isPreTitle ? titleClass[targetIdx + 1].href : undefined;
+ nHref = isNeTitle ? titleClass[targetIdx - 1].href : undefined;
+ localStorage.setItem('board-swiper-previous-idx', (targetIdx - 1));
+ localStorage.setItem('board-swiper-next-idx',  (targetIdx + 1));
+ localStorage.setItem('board-swiper-previous', pHref);
+ localStorage.setItem('board-swiper-next', nHref);
+ console.log(titleClass[targetIdx]);	
+ console.log(isPreTitle, isNeTitle);	
+ console.log(titleClass, targetIdx, pHref, nHref)
+
  aTag3.forEach((aTag) => {
 //	 console.log(aTag)
     aTag.addEventListener('click', (e) => {
 	    setTimeout( () => giveEvent(), 1000);
-	    console.log(e)
-      let getClassName = e.target.className,
-      titleClass = doc.querySelectorAll('.' + getClassName),
-      eIndex = Array.from(titleClass).indexOf(e.target),
-      pHref = titleClass[eIndex - 1].href;
-      nHref = titleClass[eIndex + 1].href;
+	    console.log(e)      	    
+      let getClassName = e.target.className;
+      titleClass = doc.querySelectorAll('.' + getClassName);
+      let eIndex = Array.from(titleClass).indexOf(e.target);
+      console.log(titleClass[eIndex + 1]);    
+      console.log(titleClass[eIndex - 1]);   
+      isPreTitle = titleClass[eIndex + 1] === undefined ? false : true;
+      isNeTitle = titleClass[eIndex - 1] === undefined ? false : true;
+      pHref = isPreTitle ? titleClass[eIndex + 1].href : undefined;
+      nHref = isNeTitle ? titleClass[eIndex - 1].href : undefined;
       console.log(e.target)	    
-     console.log(e)	    
+     console.log(e)	   
+      console.log(pHref, nHref);    
       console.log(Array.from(titleClass));	    
-      console.log(titleClass, eIndex, pHref);	    
+      console.log(titleClass, eIndex, pHref);	   
+      localStorage.setItem('board-swiper-class-name',  getClassName);
+      localStorage.setItem('board-swiper-previous-idx', (eIndex - 1));
+      localStorage.setItem('board-swiper-next-idx',  (eIndex + 1));
       localStorage.setItem('board-swiper-previous', pHref);
       localStorage.setItem('board-swiper-next', nHref);
    });
@@ -40,14 +70,24 @@ let aTag1 = document.querySelectorAll('a');
 	    setTimeout( () => giveEvent2(), 1000);
 	    console.log(e)
       let getClassName = e.target.className,
-      titleClass = document.querySelectorAll('.' + getClassName),
-      eIndex = Array.from(titleClass).indexOf(e.target),
-      pHref = titleClass[eIndex - 1].href;
-      nHref = titleClass[eIndex + 1].href;
+      titleClass = doc.querySelectorAll('.' + getClassName),
+      isPreTitle,
+      isNeTitle;
+      let eIndex = Array.from(titleClass).indexOf(e.target);
+      console.log(titleClass[eIndex - 1]);    
+      console.log(titleClass[eIndex + 1]);   
+      isPreTitle = titleClass[eIndex - 1] === undefined ? false : true;
+      isNeTitle = titleClass[eIndex + 1] === undefined ? false : true;
+      let pHref = isPreTitle ? titleClass[eIndex + 1].href : undefined;
+      let nHref = isNeTitle ? titleClass[eIndex - 1].href : undefined;
       console.log(e.target)	    
-     console.log(e)	    
+      console.log(e)	    
+      console.log(pHref, nHref);    
       console.log(Array.from(titleClass));	    
-      console.log(titleClass, eIndex, pHref);	    
+      console.log(titleClass, eIndex, pHref);	   
+      localStorage.setItem('board-swiper-class-name',  getClassName);
+      localStorage.setItem('board-swiper-previous-idx', (eIndex - 1));
+      localStorage.setItem('board-swiper-next-idx',  (eIndex + 1));
       localStorage.setItem('board-swiper-previous', pHref);
       localStorage.setItem('board-swiper-next', nHref);
    });
@@ -61,9 +101,11 @@ giveEvent();
 giveEvent2();	
 }, false);
 
-//window.addEventListener('contextmenu', (e) => {e.preventDefault();})
-
-let pointer = document.createElement('div');
+function pageMover(element) {
+let pointer = element.createElement('div')
+, targetUrl
+, targetIdx	
+, targetName;
 pointer.id = 'board-swiper';
 pointer.style.position = 'fixed';
 //pointer.style.borderRadius = '50%';
@@ -79,7 +121,7 @@ let mouseTime = 0
 , posX = 0
 , posY = 0;
 
-window.addEventListener('mousedown', (e) => {
+element.addEventListener('mousedown', (e) => {
   mouseTimer = setInterval(() => {
 	mouseTime++;
 //  mouseTime >= 150 ? 	  
@@ -88,11 +130,11 @@ window.addEventListener('mousedown', (e) => {
 	posY = e.clientY;  	 
 });
 
-window.addEventListener('contextmenu', (e) => {
+element.addEventListener('contextmenu', (e) => {
  
 })
 
-window.addEventListener('mouseup', (e) => {
+element.addEventListener('mouseup', (e) => {
   clearInterval(mouseTimer);
   console.log(mouseTime);
   console.log(posX, posY);
@@ -102,25 +144,31 @@ window.addEventListener('mouseup', (e) => {
   if (isSwiped >= 30 || isSwiped <= -30) {
     	  
     posX > e.clientX ? console.log('right') : console.log('left');
-/*
+    targetName = posX > e.clientX ? 'previous' : 'next'	  
+    targetUrl = localStorage.getItem('board-swiper-' + targetName);
+    targetIdx = localStorage.getItem('board-swiper-' + targetName + '-idx');
+	  console.log(targetIdx)
     pointer.style.display = 'block';
     pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
     pointer.style.color = 'black'; 
-    pointer.innerText = posX > e.clientX ? '다음 글로 넘어가기' : '이전 글로 돌아가기';	 
-    pointer.style.top = e.clientY + 'px';
-    pointer.style.left = e.clientX + 'px';
-	 */ 
-    document.body.appendChild(pointer);  
+    pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? '이전 글로 가기' : '다음 글로 가기';	
+    pointer.style.top = (e.clientY - 10) + 'px';
+    posX = posX > e.clientX ? (e.clientX - 220) + 'px' : (e.clientX + 20) + 'px';	  
+    pointer.style.left = posX;
+	  
+    element.body.appendChild(pointer); 
     mouseTime = 0;
   }
 });
 
-/*
+
 pointer.addEventListener('mouseover', (e) => {
  pointer.style.display = 'block';
- console.log('hello')	
  pointer.style.backgroundColor = 'hsl(230, 100%, 50%, 0.5)';
- pointer.style.color = 'white'; 
+ pointer.style.color = 'white';
+ console.log(targetIdx);	
+ targetUrl !== 'undefined' ? localStorage.setItem('board-swiper-current-idx', targetIdx) : false;
+ targetUrl !== 'undefined' ? window.open(targetUrl, '_self') : false;	
 })
 
 pointer.addEventListener('mouseout', (e) => {
@@ -140,4 +188,6 @@ pointer.addEventListener('mouseout', (e) => {
   pointer.style.display = 'none';
   }, 500);
 })
-*/
+}
+
+pageMover(document);
