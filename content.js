@@ -10,13 +10,16 @@ console.log(doc)
  doc = doc.contentDocument;
 
  pageMover(doc);	
- let aTag3 = doc.querySelectorAll('a')
+ let aTag3 
  , isPreTitle
  , isNeTitle
  , pHref
  , nHref
- , titleClass;	
+ , titleClass;
+console.log(doc)	
+ if (doc === null) {return;};	
  titleClass = doc.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
+ aTag3 = doc.querySelectorAll('a')
 
  aTag3.forEach((aTag) => {
 //	 console.log(aTag)
@@ -24,6 +27,8 @@ console.log(doc)
 	    setTimeout( () => giveEvent(), 1000);
 	    console.log(e)      	    
       let getClassName = e.target.className;
+      console.log(getClassName);
+      if(getClassName.length === 0) {return;};	    
       titleClass = doc.querySelectorAll('.' + getClassName);
       let eIndex = Array.from(titleClass).indexOf(e.target);
       console.log(eIndex)	    
@@ -63,9 +68,13 @@ let aTag1 = document.querySelectorAll('a');
 //	 console.log(aTag)
     aTag.addEventListener('click', (e) => {
 	    setTimeout( () => giveEvent(), 1000);
-	    console.log(e)      	    
+	    console.log(e)      	   
+      console.log(e.target.tagName);	    
       let getClassName = e.target.className;
-      titleClass = doc.querySelectorAll('.' + getClassName);
+		    console.log(getClassName.length);
+    console.log(getClassName);
+      if (getClassName.length === 0) {return;};	    
+      titleClass = document.querySelectorAll('.' + getClassName);
       let eIndex = Array.from(titleClass).indexOf(e.target);
       console.log(eIndex)	    
       console.log(titleClass[eIndex + 1]);    
@@ -106,13 +115,26 @@ giveEvent2();
 
 });
 
+window.addEventListener('popstate', (e) => {
+alert('pop');	
+if (e.button === 3 || e.button ===4) {
+giveEvent();
+giveEvent2();	
+
+}
+
+});
+
+
 let iframes = document.querySelectorAll('iframe');
 
 console.log(iframes)
 
 iframes.forEach((doc) => {
-console.log(doc)	
+console.log(doc)
+let iWindow = doc.contentWindow;	
  doc = doc.contentDocument;
+if(doc === null) {return;};	
 doc.addEventListener('click', (e) => {
 console.log(e.button);	
 if (e.button === 3 || e.button ===4) {
@@ -122,6 +144,17 @@ giveEvent2();
 }
 
 });
+
+iWindow.addEventListener('popstate', (e) => {
+console.log('pop');	
+if (e.button === 3 || e.button ===4) {
+giveEvent();
+giveEvent2();	
+
+}
+
+});
+
 })
 
 function pageMover(element) {
