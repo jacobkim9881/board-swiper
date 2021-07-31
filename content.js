@@ -1,3 +1,8 @@
+let targetTitle
+, targetIdx
+, previousTitle
+, nextTitle;
+
 function giveEvent() {
 let aTag1 = document.querySelectorAll('a'),
 aTag2,
@@ -16,13 +21,26 @@ console.log(doc)
  , pHref
  , nHref
  , titleClass;
-console.log(doc)	
+console.log(doc); 	
  if (doc === null) {return;};	
  titleClass = doc.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
  aTag3 = doc.querySelectorAll('a')
-
- aTag3.forEach((aTag) => {
+ targetTitle = localStorage.getItem('board-swiper-current-title');
+console.log(targetTitle);
+ aTag3.forEach((aTag, idx) => {
 //	 console.log(aTag)
+ if (aTag.innerText === targetTitle) {  
+	 console.log(targetTitle);
+      let classIndex = Array.from(titleClass).indexOf(aTag);
+      console.log(classIndex);	 
+      localStorage.setItem('board-swiper-previous', titleClass[classIndex + 1].href);
+      localStorage.setItem('board-swiper-next', titleClass[classIndex - 1].href);
+      previousTitle = titleClass[classIndex + 1].innerText;
+      nextTitle = titleClass[classIndex - 1].innerText;
+//      localStorage.setItem('board-swiper-previous-title', titleClass[classIndex + 1].innerText);	 
+//      localStorage.setItem('board-swiper-next-title', titleClass[classIndex - 1].innerText);	 
+     targetIdx = classIndex;
+ }
     aTag.addEventListener('click', (e) => {	    
 	    setTimeout( () => giveEvent(), 1000);
 	    console.log(e)      	    
@@ -41,14 +59,17 @@ console.log(doc)
       console.log(e.target)	    
      console.log(e)	   
       console.log(pHref, nHref);    
-      console.log(Array.from(titleClass));	    
-      console.log(titleClass, eIndex, pHref);	  
+//      console.log(Array.from(titleClass));	    
+//      console.log(titleClass, eIndex, pHref);	  
       if (titleClass.length > 1) {	    
       localStorage.setItem('board-swiper-class-name',  getClassName);
+      localStorage.setItem('board-swiper-current-title', e.target.innerText);
+/*	      
       localStorage.setItem('board-swiper-previous-idx', (eIndex + 1));
       localStorage.setItem('board-swiper-next-idx',  (eIndex - 1));
       localStorage.setItem('board-swiper-previous', pHref);
       localStorage.setItem('board-swiper-next', nHref);
+      */
       }
    });
  });
@@ -93,6 +114,7 @@ let aTag1 = document.querySelectorAll('a');
       localStorage.setItem('board-swiper-next-idx',  (eIndex - 1));
       localStorage.setItem('board-swiper-previous', pHref);
       localStorage.setItem('board-swiper-next', nHref);
+      localStorage.setItem('board-swiper-title', e.target.innerText);
 
    });
  });
@@ -161,7 +183,6 @@ function pageMover(element) {
 if (element === null) {return;};	
 let pointer = element.createElement('div')
 , targetUrl
-, targetIdx	
 , targetName
 , targetClass
 , isPreTitle
@@ -208,13 +229,13 @@ element.addEventListener('mouseup', (e) => {
     posX > e.clientX ? console.log('right') : console.log('left');
     targetName = posX > e.clientX ? 'previous' : 'next'	  
     targetUrl = localStorage.getItem('board-swiper-' + targetName);
-    targetIdx = localStorage.getItem('board-swiper-' + targetName + '-idx');
+//    targetIdx = localStorage.getItem('board-swiper-' + targetName + '-idx');
 	  console.log(targetUrl);
 	  console.log(targetIdx)
     pointer.style.display = 'block';
     pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
     pointer.style.color = 'black'; 
-    pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? '이전 글로 가기' : '다음 글로 가기';	
+    pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? previousTitle : nextTitle;	
     pointer.style.top = (e.clientY - 10) + 'px';
     posX = posX > e.clientX ? (e.clientX - 220) + 'px' : (e.clientX + 20) + 'px';	  
     pointer.style.left = posX;
@@ -237,11 +258,13 @@ pointer.addEventListener('mouseover', (e) => {
  isNeTitle = targetClass[targetIdx - 1] === undefined ? false : true;
  pHref = isPreTitle ? targetClass[targetIdx + 1].href : undefined;
  nHref = isNeTitle ? targetClass[targetIdx - 1].href : undefined;	
- console.log(targetClass[targetIdx + 1], isPreTitle, pHref);	
+ console.log(targetClass[targetIdx + 1], isPreTitle, pHref);
+/*	
  localStorage.setItem('board-swiper-previous-idx', (targetIdx + 1));
  localStorage.setItem('board-swiper-next-idx',  (targetIdx - 1));
  localStorage.setItem('board-swiper-previous', pHref);
  localStorage.setItem('board-swiper-next', nHref);
+ */
  targetUrl !== 'undefined' ? localStorage.setItem('board-swiper-current-idx', targetIdx) : false;
  targetUrl !== 'undefined' ? window.open(targetUrl, '_self') : false;	
 })
