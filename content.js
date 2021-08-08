@@ -100,12 +100,27 @@ let aTag1 = document.querySelectorAll('a');
  , pHref
  , nHref
  , titleClass;
-
+ 
  aTag1.forEach((aTag) => {
 //	 console.log(aTag)
+  titleClass = document.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
+ targetTitle = localStorage.getItem('board-swiper-current-title');
+//console.log(aTag.innerText, targetTitle);	    
+      if (aTag.innerText === targetTitle) {  
+	 console.log(targetTitle);
+      let classIndex = Array.from(titleClass).indexOf(aTag);
+      console.log(classIndex);	 
+      localStorage.setItem('board-swiper-previous', titleClass[classIndex + 1].href);
+      localStorage.setItem('board-swiper-next', titleClass[classIndex - 1].href);
+      previousTitle = titleClass[classIndex + 1].innerText;
+      nextTitle = titleClass[classIndex - 1].innerText;
+//      localStorage.setItem('board-swiper-previous-title', titleClass[classIndex + 1].innerText);	 
+//      localStorage.setItem('board-swiper-next-title', titleClass[classIndex - 1].innerText);	 
+     targetIdx = classIndex;
+ }
     aTag.addEventListener('click', (e) => {
-	    setTimeout( () => giveEvent(), 1000);
-	    console.log(e)      	   
+//	    setTimeout( () => giveEvent(), 1000);
+    console.log(e)      	   
       console.log(e.target.tagName);	    
       let getClassName = e.target.className;
 		    console.log(getClassName.length);
@@ -125,12 +140,16 @@ let aTag1 = document.querySelectorAll('a');
       console.log(pHref, nHref);    
       console.log(Array.from(titleClass));	    
       console.log(titleClass, eIndex, pHref);	   
+      if (titleClass.length > 1) {	    
       localStorage.setItem('board-swiper-class-name',  getClassName);
+      localStorage.setItem('board-swiper-current-title', e.target.innerText);
+/*	      
       localStorage.setItem('board-swiper-previous-idx', (eIndex + 1));
       localStorage.setItem('board-swiper-next-idx',  (eIndex - 1));
       localStorage.setItem('board-swiper-previous', pHref);
       localStorage.setItem('board-swiper-next', nHref);
-      localStorage.setItem('board-swiper-title', e.target.innerText);
+      */
+      }
 
    });
  });
@@ -149,15 +168,15 @@ console.log('loading was fast');
 
 window.addEventListener("load", function() {
 console.log(document.readyState);
-giveEvent();
+//giveEvent();
 giveEvent2();	
 }, false);
 
 window.addEventListener('click', (e) => {
 console.log(e.button);	
 if (e.button === 3 || e.button ===4) {
-giveEvent();
-giveEvent2();	
+//giveEvent();
+//giveEvent2();	
 
 }
 
@@ -173,38 +192,6 @@ if (e.button === 3 || e.button ===4) {
 
 });
 
-
-let iframes = document.querySelectorAll('iframe');
-
-console.log(iframes)
-
-iframes.forEach((doc) => {
-
-console.log(doc)
-let iWindow = doc.contentWindow;	
- doc = doc.contentDocument;
-if(doc === null) {return;};	
-doc.addEventListener('click', (e) => {
-console.log(e.button);	
-if (e.button === 3 || e.button ===4) {
-giveEvent();
-giveEvent2();	
-
-}
-
-});
-
-iWindow.addEventListener('popstate', (e) => {
-alert('pop 183');	
-if (e.button === 3 || e.button ===4) {
-giveEvent();
-giveEvent2();	
-
-}
-
-});
-
-})
 
 function pageMover(element) {
 if (element === null) {return;};	
@@ -231,21 +218,6 @@ let mouseTime = 0
 , posX = 0
 , posY = 0;
 	
-console.log(element.querySelector('#test1'));	
-
-if (!element.querySelector('#test1')) {
-let test1 = document.createElement('div');
-test1.id = 'test1';	
-test1.style.zIndex = '3000';
-test1.style.position = 'absolute';
-test1.style.width = '500px';
-test1.style.height = '500px';
-test1.style.right = '0';
-test1.style.top = '0';
-test1.style.backgroundColor = 'green';
-element.body.appendChild(test1);	
-}
-
 console.log('mover');
 console.log(element)	
 element.addEventListener('click', (e) => {
@@ -340,6 +312,7 @@ pointer.addEventListener('mouseover', (e) => {
  localStorage.setItem('board-swiper-previous', pHref);
  localStorage.setItem('board-swiper-next', nHref);
  */
+ localStorage.setItem('board-swiper-current-title', e.target.innerText);	
  targetUrl !== 'undefined' ? localStorage.setItem('board-swiper-current-idx', targetIdx) : false;
  targetUrl !== 'undefined' ? window.open(targetUrl, '_self') : false;	
 })
