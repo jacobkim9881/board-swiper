@@ -1,3 +1,4 @@
+( function contentsjs () {
 let targetTitle
 , targetIdx
 , previousTitle
@@ -11,6 +12,9 @@ iframes = document.querySelectorAll('iframe');
 console.log(iframes)
 
 iframes.forEach((doc) => {
+let frameWraper = document.createElement('div');
+frameWraper.class = 'frame-wraper';	
+
 console.log(doc)	
  doc = doc.contentDocument;
 
@@ -22,7 +26,19 @@ console.log(doc)
  , nHref
  , titleClass;
 console.log(doc); 	
- if (doc === null) {return;};	
+ if (doc === null) {return;};
+ // if click txt_subhead then prevent from stopping script	
+ let daumBoL = doc.querySelector('.txt_subhead');	
+ if (daumBoL !== null) {
+ console.log( daumBoL.href)
+ daumBoL.addEventListener('click', (e) => {
+ e.preventDefault();	 
+ window.open(daumBoL.href, '_self')
+ });
+ }
+ // if click txt_subhead then prevent from stopping script	
+
+ console.log(doc.querySelector('.txt_subhead'));	
  titleClass = doc.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
  aTag3 = doc.querySelectorAll('a')
  targetTitle = localStorage.getItem('board-swiper-current-title');
@@ -49,7 +65,7 @@ console.log(targetTitle);
       if(getClassName.length === 0) {return;};	    
       titleClass = doc.querySelectorAll('.' + getClassName);
       let eIndex = Array.from(titleClass).indexOf(e.target);
-      console.log(eIndex)	    
+      co0nsole.log(eIndex)	    
       console.log(titleClass[eIndex + 1]);    
       console.log(titleClass[eIndex - 1]);   
       isPreTitle = titleClass[eIndex + 1] === undefined ? false : true;
@@ -122,7 +138,17 @@ let aTag1 = document.querySelectorAll('a');
 };
 
 console.log(localStorage.getItem('board-swiper-previous'));
+console.log(document.readyState);
+
+if (document.readyState === "complete") {
+console.log('loading was fast');	
+//window.location.reload();	
+//giveEvent();
+//giveEvent2();	
+}
+
 window.addEventListener("load", function() {
+console.log(document.readyState);
 giveEvent();
 giveEvent2();	
 }, false);
@@ -138,10 +164,10 @@ giveEvent2();
 });
 
 window.addEventListener('popstate', (e) => {
-alert('pop');	
+//alert('pop 153');	
 if (e.button === 3 || e.button ===4) {
-giveEvent();
-giveEvent2();	
+//giveEvent();
+//giveEvent2();	
 
 }
 
@@ -153,6 +179,7 @@ let iframes = document.querySelectorAll('iframe');
 console.log(iframes)
 
 iframes.forEach((doc) => {
+
 console.log(doc)
 let iWindow = doc.contentWindow;	
  doc = doc.contentDocument;
@@ -168,7 +195,7 @@ giveEvent2();
 });
 
 iWindow.addEventListener('popstate', (e) => {
-console.log('pop');	
+alert('pop 183');	
 if (e.button === 3 || e.button ===4) {
 giveEvent();
 giveEvent2();	
@@ -203,6 +230,34 @@ let mouseTime = 0
 , mouseTimer
 , posX = 0
 , posY = 0;
+	
+console.log(element.querySelector('#test1'));	
+
+if (!element.querySelector('#test1')) {
+let test1 = document.createElement('div');
+test1.id = 'test1';	
+test1.style.zIndex = '3000';
+test1.style.position = 'absolute';
+test1.style.width = '500px';
+test1.style.height = '500px';
+test1.style.right = '0';
+test1.style.top = '0';
+test1.style.backgroundColor = 'green';
+element.body.appendChild(test1);	
+}
+
+console.log('mover');
+console.log(element)	
+element.addEventListener('click', (e) => {
+//e.stopImmediatePropagation();
+console.log('hello');
+}, true)
+element.addEventListener('click', (e) => {
+console.log(e.composedPath())
+ if( e.composedPath().includes( element ) ) { // check that 'element' has really been clicked
+    console.log('Extension is executed.');
+ }
+}, { capture: true }); 
 
 element.addEventListener('mousedown', (e) => {
   mouseTimer = setInterval(() => {
@@ -213,16 +268,36 @@ element.addEventListener('mousedown', (e) => {
 	posY = e.clientY;  	 
 });
 
-element.addEventListener('contextmenu', (e) => {
- 
-})
-
 element.addEventListener('mouseup', (e) => {
+
   clearInterval(mouseTimer);
   console.log(mouseTime);
   console.log(posX, posY);
   console.log(e.clientX, e.clientY);
   console.log(e.button)
+  console.log(e);	
+   if(e.button === 3 || e.button === 4) {
+   let isGo = e.button === 4 ? 1 : -1;
+   console.log(isGo, e.button);
+   if (e.button === 3) {
+   console.log(e.button);	   
+//   window.open(document.referrer, '_self');
+//   e.preventDefault();
+   chrome.runtime.sendMessage(undefined,
+    { name:'1'           
+      }
+  );
+  
+//   window.history.pushState(null, document.title, document.location.href);
+   }
+   	   
+//   window.location.reload();	 
+//   window.history.go(isGo);	 
+//return;	   
+//   e.button === 4 ? window.history.go(1) : window.history.go(-1);
+
+   }
+
   let isSwiped = e.clientX - posX;	
   if (isSwiped >= 30 || isSwiped <= -30) {
     	  
@@ -289,3 +364,4 @@ pointer.addEventListener('mouseout', (e) => {
 }
 
 pageMover(document);
+})();
