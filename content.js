@@ -25,7 +25,7 @@ console.log(doc)
  , pHref
  , nHref
  , titleClass;
-console.log(doc); 	
+ console.log(doc); 	
  if (doc === null) {return;};
  // if click txt_subhead then prevent from stopping script	
  let daumBoL = doc.querySelector('.txt_subhead');	
