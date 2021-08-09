@@ -43,8 +43,7 @@ function pageMover(element) {
     	
 
     let isSwiped = e.clientX - posX;	
-    if (isSwiped >= 30 || isSwiped <= -30) {
-      posX > e.clientX ? 
+    if (isSwiped >= 30 || isSwiped <= -30) {      
       targetName = posX > e.clientX ? 'previous' : 'next'	  
       targetUrl = localStorage.getItem('board-swiper-' + targetName);
       previousTitle = localStorage.getItem('board-swiper-previous-title');
