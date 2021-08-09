@@ -3,7 +3,6 @@ let targetTitle
 , targetIdx
 , previousTitle
 , nextTitle;
-
 function giveEvent() {
 let aTag1 = document.querySelectorAll('a'),
 aTag2,
@@ -44,7 +43,7 @@ console.log(doc)
  targetTitle = localStorage.getItem('board-swiper-current-title');
 console.log(targetTitle);
  aTag3.forEach((aTag, idx) => {
-//	 console.log(aTag)
+	 console.log(aTag)
  if (aTag.innerText === targetTitle) {  
 	 console.log(targetTitle);
       let classIndex = Array.from(titleClass).indexOf(aTag);
@@ -105,13 +104,18 @@ let aTag1 = document.querySelectorAll('a');
 //	 console.log(aTag)
   titleClass = document.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
  targetTitle = localStorage.getItem('board-swiper-current-title');
-//console.log(aTag.innerText, targetTitle);	    
-      if (aTag.innerText === targetTitle) {  
-	 console.log(targetTitle);
+//console.log(aTag.innerText, targetTitle);	   
+      if (aTag.innerText.trim() === targetTitle || aTag.innerText === targetTitle ) {  
+		 console.log(aTag.innerText[1], targetTitle[1]);
+	 console.log(aTag.innerText[1] === targetTitle[1]); 
+	      console.log(targetTitle);
       let classIndex = Array.from(titleClass).indexOf(aTag);
-      console.log(classIndex);	 
+      console.log(classIndex);	
+	console.log(titleClass[classIndex - 1]);	      
       localStorage.setItem('board-swiper-previous', titleClass[classIndex + 1].href);
       localStorage.setItem('board-swiper-next', titleClass[classIndex - 1].href);
+      localStorage.setItem('board-swiper-previous-title', titleClass[classIndex + 1].innerText);
+      localStorage.setItem('board-swiper-next-title', titleClass[classIndex - 1].innerText);
       previousTitle = titleClass[classIndex + 1].innerText;
       nextTitle = titleClass[classIndex - 1].innerText;
 //      localStorage.setItem('board-swiper-previous-title', titleClass[classIndex + 1].innerText);	 
@@ -140,6 +144,7 @@ let aTag1 = document.querySelectorAll('a');
       console.log(pHref, nHref);    
       console.log(Array.from(titleClass));	    
       console.log(titleClass, eIndex, pHref);	   
+      console.log(e.target.innerText)	    
       if (titleClass.length > 1) {	    
       localStorage.setItem('board-swiper-class-name',  getClassName);
       localStorage.setItem('board-swiper-current-title', e.target.innerText);
@@ -167,6 +172,7 @@ console.log('loading was fast');
 }
 
 window.addEventListener("load", function() {
+console.log(document);	
 console.log(document.readyState);
 //giveEvent();
 giveEvent2();	
@@ -276,6 +282,8 @@ element.addEventListener('mouseup', (e) => {
     posX > e.clientX ? console.log('right') : console.log('left');
     targetName = posX > e.clientX ? 'previous' : 'next'	  
     targetUrl = localStorage.getItem('board-swiper-' + targetName);
+    previousTitle = localStorage.getItem('board-swiper-previous-title');
+    nextTitle = localStorage.getItem('board-swiper-next-title');
 //    targetIdx = localStorage.getItem('board-swiper-' + targetName + '-idx');
 	  console.log(targetUrl);
 	  console.log(targetIdx)
