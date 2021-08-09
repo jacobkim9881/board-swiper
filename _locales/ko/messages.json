@@ -1,0 +1,10 @@
+{
+ "appName": {
+   "message": "게시판 이전 글 다음 글 쉽게 가기(Board Swiper)",
+   "description": "The title of the application, displayed in the web store."
+ },
+ "appDesc": {
+   "message": "게시판에서 이전 글과 다음 글을 마우스로 밀어서 넘어갈 수 있는 확장앱입니다.",
+   "description": "The description of the application, displayed in the web store."
+ }
+}
