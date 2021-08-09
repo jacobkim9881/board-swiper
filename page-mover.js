@@ -26,8 +26,8 @@ function pageMover(element) {
     , posX = 0
     , posY = 0;
 	
-  console.log('mover');
-  console.log(element)	
+  
+  	
 
   element.addEventListener('mousedown', (e) => {
     posX = e.clientX;
@@ -37,21 +37,21 @@ function pageMover(element) {
   element.addEventListener('mouseup', (e) => {
 
     clearInterval(mouseTimer);
-    console.log(mouseTime);
-    console.log(posX, posY);
-    console.log(e.clientX, e.clientY);
-    console.log(e.button)
-    console.log(e);	
+    
+    
+    
+    
+    	
 
     let isSwiped = e.clientX - posX;	
     if (isSwiped >= 30 || isSwiped <= -30) {
-      posX > e.clientX ? console.log('right') : console.log('left');
+      posX > e.clientX ? 
       targetName = posX > e.clientX ? 'previous' : 'next'	  
       targetUrl = localStorage.getItem('board-swiper-' + targetName);
       previousTitle = localStorage.getItem('board-swiper-previous-title');
       nextTitle = localStorage.getItem('board-swiper-next-title');
-	  console.log(targetUrl);
-	  console.log(targetIdx)
+	  
+	  
       pointer.style.display = 'block';
       pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
       pointer.style.color = 'black'; 
@@ -70,15 +70,15 @@ function pageMover(element) {
     pointer.style.display = 'block';
     pointer.style.backgroundColor = 'hsl(230, 100%, 50%, 0.5)';
     pointer.style.color = 'white';
-    console.log(targetIdx);
+    
     targetClass = element.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
     targetIdx = parseInt(targetIdx);	
-    console.log(targetClass)	
+    	
     isPreTitle = targetClass[targetIdx + 1] === undefined ? false : true;
     isNeTitle = targetClass[targetIdx - 1] === undefined ? false : true;
     pHref = isPreTitle ? targetClass[targetIdx + 1].href : undefined;
     nHref = isNeTitle ? targetClass[targetIdx - 1].href : undefined;	
-    console.log(targetClass[targetIdx + 1], isPreTitle, pHref);
+    
     localStorage.setItem('board-swiper-current-title', e.target.innerText);	
     targetUrl !== 'undefined' ? localStorage.setItem('board-swiper-current-idx', targetIdx) : false;
     targetUrl !== 'undefined' ? window.open(targetUrl, '_self') : false;	
