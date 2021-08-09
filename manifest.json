@@ -25,7 +25,7 @@
 	  "matches": [ "<all_urls>"],
 	  "run_at": "document_start",
 	  "all_frames": true,
-	  "js": ["jquery-3.6.0.min.js", "test.js", "content.js"]
+	  "js": ["give-event.js", "page-mover.js", "content.js"]
   }
   ],
   "permissions": ["storage", "tabs", "scripting"],
