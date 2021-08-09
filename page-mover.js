@@ -17,8 +17,7 @@ function pageMover(element) {
   pointer.style.border = 'hsl(0, 0%, 80%)';
   pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
   pointer.style.width = '200px';
-  pointer.style.textIndent = '30px';
-  pointer.style.height = '20px';
+  pointer.style.padding = '10px 20px 10px 30px';
   pointer.style.zIndex = '10000';
 
   let mouseTime = 0
@@ -57,7 +56,7 @@ function pageMover(element) {
       pointer.style.color = 'black'; 
       pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? previousTitle : nextTitle;	
       pointer.style.top = (e.clientY - 10) + 'px';
-      posX = posX > e.clientX ? (e.clientX - 220) + 'px' : (e.clientX + 20) + 'px';	  
+      posX = posX > e.clientX ? (e.clientX - 270) + 'px' : (e.clientX + 30) + 'px';	  
       pointer.style.left = posX;
 	  
       element.body.appendChild(pointer); 
