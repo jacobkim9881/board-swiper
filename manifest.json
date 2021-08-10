@@ -20,7 +20,7 @@
 	  "js": ["give-event.js", "page-mover.js", "content.js"]
   }
   ],
-  "permissions": ["storage", "tabs", "scripting"],
+  "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
   "manifest_version": 3
 }
