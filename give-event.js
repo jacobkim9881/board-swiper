@@ -24,23 +24,35 @@ function giveEvent() {
 	, pAtagIndex
 	, nAtagIndex    
 	, previousAtag
-	, nextAtag;
+	, nextAtag
+	, lastIndex;
       tdTag = aTag.closest('td');	    
+      lastIndex = titleClass.length - 1;
       classIndex = Array.from(titleClass).indexOf(tdTag);
-      aTagIndex = Array.from(tdTag.querySelectorAll('a')).indexOf(aTag);	    
+      aTagIndex = Array.from(tdTag.querySelectorAll('a')).indexOf(aTag);	   
+
+      localStorage.setItem('board-swiper-previous', previousAtag);
+      localStorage.setItem('board-swiper-previous-title', '이 페이지의 마지막입니다.');
+      localStorage.setItem('board-swiper-next-title', '이 페이지의 첫 글입니다.');
+      localStorage.setItem('board-swiper-next', nextAtag);
+
+      if (lastIndex !== classIndex) {    
       pAtagIndex = Array.from(titleClass[classIndex + 1].querySelectorAll('a')).indexOf(aTag);	    
-      nAtagIndex = Array.from(titleClass[classIndex - 1].querySelectorAll('a')).indexOf(aTag);	    
       previousAtag = titleClass[classIndex + 1].querySelectorAll('a')[aTagIndex];
+      localStorage.setItem('board-swiper-previous', previousAtag.href);
+      localStorage.setItem('board-swiper-previous-title', previousAtag.innerText);
+      }
+      if (classIndex !== 0) {	    
+      nAtagIndex = Array.from(titleClass[classIndex - 1].querySelectorAll('a')).indexOf(aTag);	    
       nextAtag = titleClass[classIndex - 1].querySelectorAll('a')[aTagIndex];
+      localStorage.setItem('board-swiper-next-title', nextAtag.innerText);
+      localStorage.setItem('board-swiper-next', nextAtag.href);
+      }
       console.log(classIndex);	
       console.log(titleClass[classIndex - 1]);	    
       console.log(previousAtag)	    
       console.log(nextAtag)	   
-      localStorage.setItem('board-swiper-previous', previousAtag.href);
-      localStorage.setItem('board-swiper-next', nextAtag.href);
-      localStorage.setItem('board-swiper-previous-title', previousAtag.innerText);
-      localStorage.setItem('board-swiper-next-title', nextAtag.innerText);
-      
+           
     }
     }
       aTag.addEventListener('click', (e) => {
