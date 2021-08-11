@@ -41,8 +41,11 @@ function pageMover(element) {
     console.log(e.clientX, e.clientY);
     console.log(e.button)
     console.log(e);	
+    let isScrolled = Math.abs(e.clientY - posY);
+    let isSwiped = e.clientX - posX;
 
-    let isSwiped = e.clientX - posX;	
+    pointer.style.display = isScrolled > 200 ? 'none' : 'block';	  
+
     if (isSwiped >= 30 || isSwiped <= -30) {
       posX > e.clientX ? console.log('right') : console.log('left');
       targetName = posX > e.clientX ? 'previous' : 'next'	  
@@ -51,7 +54,6 @@ function pageMover(element) {
       nextTitle = localStorage.getItem('board-swiper-next-title');
 	  console.log(targetUrl);
 	  console.log(targetIdx)
-      pointer.style.display = 'block';
       pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
       pointer.style.color = 'black'; 
       pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? previousTitle : nextTitle;	
