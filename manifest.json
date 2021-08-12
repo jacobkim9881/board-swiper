@@ -17,7 +17,7 @@
 	  "matches": [ "<all_urls>"],
 	  "run_at": "document_start",
 	  "all_frames": true,
-	  "js": ["give-event.js", "page-mover.js", "content.js"]
+	  "js": ["site-list.js", "give-event2.js", "give-event.js", "page-mover.js", "content.js"]
   }
   ],
   "permissions": ["storage"],
