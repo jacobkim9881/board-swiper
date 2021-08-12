@@ -13,11 +13,12 @@ function giveEvent() {
 //console.log(titleClass);
     targetTitle = localStorage.getItem('board-swiper-current-title');
     //console.log(aTag.innerText, targetTitle);	 
-    if (titleClass.length > 0 ) {	 
+    if (titleClass.length > 0 && aTag.closest('td') !== null) {	 
     if (aTag.innerText.trim() === targetTitle || aTag.innerText === targetTitle ) {  
 		 console.log(aTag.innerText[1], targetTitle[1]);
 	 console.log(aTag.innerText[1] === targetTitle[1]); 
 	      console.log(targetTitle);
+	    console.log(aTag);
       let tdTag
 	, tdTagLength    
 	, previousTdTag
@@ -32,7 +33,8 @@ function giveEvent() {
 	, nextAtag
 	, lastIndex
 	, targetATags;
-      tdTag = aTag.closest('td');	    
+      tdTag = aTag.closest('td');	   
+	    console.log(tdTag)
       tdTagLength = tdTag.querySelectorAll('a').length; 	    
       lastIndex = titleClass.length - 1;
       classIndex = Array.from(titleClass).indexOf(tdTag);
