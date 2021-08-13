@@ -1,11 +1,24 @@
 console.log(localStorage.getItem('board-swiper-previous'));
 console.log(document.readyState);
-console.log(siteList[0]["custom-function"]);
 let hostUrl = window.location.hostname;
 window.addEventListener("load", function() {
   console.log(document);	
   console.log(document.readyState);
 
+  if (siteList[hostUrl]) {	 
+  let getAClass, getWraperTag, getWraperClass, getListAClass;
+  getAClass = siteList[hostUrl]["a-class"];
+  getWraperTag = siteList[hostUrl]["wraper-tag"];
+  getWraperClass = siteList[hostUrl]["wraper-class"];
+  siteList[hostUrl]["custom-function"](getAClass, getWraperTag, getWraperClass);
+  if (siteList[hostUrl]["isListDifferent"]) {
+  getListAClass = siteList[hostUrl]["list-click-event"]["a-class"];	  
+	  listEvent(getListAClass);
+  }
+  } else {
+  giveEvent();
+  }
+/*
   switch (hostUrl) {
    case 'www.bobaedream.co.kr':
 		  console.log('hollo');
@@ -16,6 +29,7 @@ window.addEventListener("load", function() {
   giveEvent();		 
   return;		  
   }
+	*/
 }, false);
 
 pageMover(document);
