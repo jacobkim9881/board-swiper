@@ -6,11 +6,12 @@ window.addEventListener("load", function() {
   console.log(document.readyState);
 
   if (siteList[hostUrl]) {	 
-  let getAClass, getWraperTag, getWraperClass, getListAClass;
+  let getAClass, getWraperTag, getWraperClass, getListAClass, getSubClass;
   getAClass = siteList[hostUrl]["a-class"];
   getWraperTag = siteList[hostUrl]["wraper-tag"];
   getWraperClass = siteList[hostUrl]["wraper-class"];
-  siteList[hostUrl]["custom-function"](getAClass, getWraperTag, getWraperClass);
+  getSubClass = siteList[hostUrl]["sub-class"];
+  siteList[hostUrl]["custom-function"](getAClass, getWraperTag, getWraperClass, getSubClass);
   if (siteList[hostUrl]["isListDifferent"]) {
   getListAClass = siteList[hostUrl]["list-click-event"]["a-class"];	  
 	  listEvent(getListAClass);
