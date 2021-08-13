@@ -1,7 +1,8 @@
 let siteList = 
 	
-  [
-    {
+	{
+
+ "cafe.naver.com":   {
      "host" : 'cafe.naver.com',
 	    "custom-function" : 1,
 	"wraper-class": "tit_area",
@@ -14,9 +15,10 @@ let siteList =
 	    "wraper-tag": "div",
 	    }
     },
-  {
+"www.bobaedream.co.kr":  {
      "host" : 'www.bobaedream.co.kr',
-	    "custom-function" : 3,
+	    "custom-function" : function(aClass, wraperTag, wraperClass) {
+		    return giveEvent3(aClass, wraperTag, wraperClass)},
 	"wraper-class": "author",
 		    "wraper-tag": "td",
 		    "a-class": "",
@@ -26,8 +28,8 @@ let siteList =
 	    "wraper-class": "pl14",
 	    "wraper-tag": "td",
 	    }
-    }
- ,{
+    },
+"www.clien.net": {
      "host" : 'www.clien.net',
 	    "custom-function" : 4,
 	"wraper-class": "list_title",
@@ -40,5 +42,5 @@ let siteList =
 		    "a-class": "list_subject",
 	    }
     }
-  ]
+	}
 	
