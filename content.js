@@ -7,12 +7,12 @@ window.addEventListener("load", function() {
   console.log(document.readyState);
 
   switch (hostUrl) {
-  case 'cafe.naver.com':
+   case 'www.bobaedream.co.kr':
 		  console.log('hollo');
-  giveEvent2(siteList[0]["a-class"], siteList[0]["wraper-tag"], siteList[0]["wraper-class"]);
-  listEvent(siteList[0]["list-click-event"]["a-class"]);
+  giveEvent3(siteList[1]["a-class"], siteList[1]["wraper-tag"], siteList[1]["wraper-class"]);
+  listEvent(siteList[1]["list-click-event"]["a-class"]);
   return;
-  default :
+ default :
   giveEvent();		 
   return;		  
   }
