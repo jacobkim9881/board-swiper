@@ -18,11 +18,11 @@
 	  "run_at": "document_start",
 	  "all_frames": true,
 	  "js": [
-		  "site-list.js", "page-mover.js",
+		  "page-mover.js",
 		  "give-event.js", "give-event2.js", "give-event3.js", 
 		  "give-event4.js",
 		  "list-event.js", 
-		  "content.js"
+		  "site-list.js", "content.js"
 	  ]
   }
   ],
