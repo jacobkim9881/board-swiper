@@ -8,6 +8,10 @@ function giveEvent() {
     , targetTitle;
   console.log(localStorage.getItem('board-swiper-class-name'));
     titleClass = document.getElementsByClassName(localStorage.getItem('board-swiper-class-name'));	  
+
+      localStorage.setItem('board-swiper-next', 'no-url');
+      localStorage.setItem('board-swiper-previous', 'no-url');
+	
   aTag1.forEach((aTag) => {
 //console.log(aTag)
 //console.log(titleClass);
@@ -42,11 +46,6 @@ function giveEvent() {
       targetATags = document.getElementsByClassName(aTag.className);
       targetATagIndex = Array.from(targetATags).indexOf(aTag);	    
 
-      localStorage.setItem('board-swiper-previous', previousAtag);
-      localStorage.setItem('board-swiper-previous-title', '이 페이지의 마지막입니다.');
-      localStorage.setItem('board-swiper-next-title', '이 페이지의 첫 글입니다.');
-      localStorage.setItem('board-swiper-next', nextAtag);
-
       if (lastIndex !== classIndex) {  
       previousTdTag = titleClass[classIndex + 1];      
       pTdTagLength = previousTdTag.querySelectorAll('a').length;	      
@@ -59,6 +58,9 @@ function giveEvent() {
 		     targetATags[targetATagIndex + 1];
       localStorage.setItem('board-swiper-previous', previousAtag.href);
       localStorage.setItem('board-swiper-previous-title', previousAtag.innerText);
+      } else if (lastIndex === classIndex && lastIndex > 0) {
+      localStorage.setItem('board-swiper-previous', previousAtag);
+      localStorage.setItem('board-swiper-previous-title', '이 페이지의 마지막입니다.');
       }
       if (classIndex !== 0) {	    
       nextTdTag = titleClass[classIndex - 1];	      
@@ -69,6 +71,9 @@ function giveEvent() {
 		     targetATags[targetATagIndex - 1];
       localStorage.setItem('board-swiper-next-title', nextAtag.innerText);
       localStorage.setItem('board-swiper-next', nextAtag.href);
+      } else if (classIndex === 0 && lastIndex > 0) {
+      localStorage.setItem('board-swiper-next-title', '이 페이지의 첫 글입니다.');
+      localStorage.setItem('board-swiper-next', nextAtag);
       }
       console.log(classIndex);	
       console.log(nextTdTag);	    
