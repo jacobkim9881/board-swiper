@@ -44,14 +44,13 @@ function pageMover(element) {
     let isScrolled = Math.abs(e.clientY - posY);
     let isSwiped = e.clientX - posX;
 
-    pointer.style.display = isScrolled > 200 ? 'none' : 'block';	  
-
     if (isSwiped >= 30 || isSwiped <= -30) {
-      posX > e.clientX ? console.log('right') : console.log('left');
+    pointer.style.display = isScrolled > 200 ? 'none' : 'block';	  
       targetName = posX > e.clientX ? 'previous' : 'next'	  
       targetUrl = localStorage.getItem('board-swiper-' + targetName);
       previousTitle = localStorage.getItem('board-swiper-previous-title');
       nextTitle = localStorage.getItem('board-swiper-next-title');
+      pointer.style.display = targetUrl === 'no-url' ? 'none' : 'block';	    
 	  console.log(targetUrl);
 	  console.log(targetIdx)
       pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
@@ -68,7 +67,6 @@ function pageMover(element) {
 
 
   pointer.addEventListener('mouseover', (e) => {
-    pointer.style.display = 'block';
     pointer.style.backgroundColor = 'hsl(230, 100%, 50%, 0.5)';
     pointer.style.color = 'white';
     console.log(targetIdx);
