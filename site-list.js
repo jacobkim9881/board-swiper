@@ -31,11 +31,13 @@ let siteList =
     },
 "www.clien.net": {
      "host" : 'www.clien.net',
-	    "custom-function" : 4,
+	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
+		    return giveEvent2(aClass, wraperTag, wraperClass, subClass)},
 	"wraper-class": "list_title",
 		    "wraper-tag": "div",
 		    "a-class": "list_subject",
-	    "isListDifferent" : false,
+		    "sub-class": "subject_fixed",
+	    "isListDifferent" : true,
 	    "list-click-event": {
 	"wraper-class": "list_title",
 		    "wraper-tag": "div",
