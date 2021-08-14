@@ -19,6 +19,7 @@ function pageMover(element) {
   pointer.style.width = '200px';
   pointer.style.padding = '10px 20px 10px 30px';
   pointer.style.zIndex = '10000';
+  pointer.style.fontSize = '13px';
 
   let mouseTime = 0
     , mouseTimer
