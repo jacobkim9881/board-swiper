@@ -43,6 +43,22 @@ let siteList =
 		    "wraper-tag": "div",
 		    "a-class": "list_subject",
 	    }
+    },
+"www.ddanzi.com": {
+     "host" : "www.ddanzi.com",
+	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
+		    return giveEvent4(aClass, wraperTag, wraperClass, subClass)},
+	"wraper-class": "title",
+		    "wraper-tag": "td",
+		    "a-class": "",
+		    "sub-class": "",
+	    "isListDifferent" : false,
+	    "list-click-event": {
+	"wraper-class": "title",
+		    "wraper-tag": "td",
+		    "a-class": "",
+	    }
     }
+
 	}
 	
