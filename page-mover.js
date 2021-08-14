@@ -19,6 +19,7 @@ function pageMover(element) {
   pointer.style.width = '200px';
   pointer.style.padding = '10px 20px 10px 30px';
   pointer.style.zIndex = '10000';
+  pointer.style.fontSize = '13px';
 
   let mouseTime = 0
     , mouseTimer
@@ -35,22 +36,18 @@ function pageMover(element) {
 
   element.addEventListener('mouseup', (e) => {
 
-    clearInterval(mouseTimer);
-    
-    
-    
-    
-    	
+    let isScrolled = Math.abs(e.clientY - posY);
+    let isSwiped = e.clientX - posX;
 
-    let isSwiped = e.clientX - posX;	
-    if (isSwiped >= 30 || isSwiped <= -30) {      
+    if (isSwiped >= 30 || isSwiped <= -30) {
+      pointer.style.display = isScrolled > 200 ? 'none' : 'block';	  
       targetName = posX > e.clientX ? 'previous' : 'next'	  
       targetUrl = localStorage.getItem('board-swiper-' + targetName);
       previousTitle = localStorage.getItem('board-swiper-previous-title');
       nextTitle = localStorage.getItem('board-swiper-next-title');
+      pointer.style.display = targetUrl === 'no-url' ? 'none' : 'block';	    
 	  
 	  
-      pointer.style.display = 'block';
       pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
       pointer.style.color = 'black'; 
       pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? previousTitle : nextTitle;	
@@ -65,7 +62,6 @@ function pageMover(element) {
 
 
   pointer.addEventListener('mouseover', (e) => {
-    pointer.style.display = 'block';
     pointer.style.backgroundColor = 'hsl(230, 100%, 50%, 0.5)';
     pointer.style.color = 'white';
     

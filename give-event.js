@@ -1,45 +1,99 @@
 function giveEvent() {
-  let aTag1 = document.querySelectorAll('a');
+  let aTag1 = document.querySelectorAll('a[href]');
   let isPreTitle
     , isNeTitle
     , pHref
     , nHref
     , titleClass
-    , targetTitle
-    , previousTitle
-    , nextTitle;
- 
+    , targetTitle;
+  
+  titleClass = document.getElementsByClassName(localStorage.getItem('board-swiper-class-name'));	  
+
+  localStorage.setItem('board-swiper-next', 'no-url');
+  localStorage.setItem('board-swiper-previous', 'no-url');
+	
   aTag1.forEach((aTag) => {
-    //	 
-    titleClass = document.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
+    
+    
     targetTitle = localStorage.getItem('board-swiper-current-title');
-    //	   
-    if (aTag.innerText.trim() === targetTitle || aTag.innerText === targetTitle ) {  
+    
+    if (titleClass.length > 0 && aTag.closest('td') !== null) {	 
+      if (aTag.innerText.trim() === targetTitle || aTag.innerText === targetTitle ) {  
 		 
-	  
+	 
 	      
-      let classIndex = Array.from(titleClass).indexOf(aTag);
-      	
-      	      
-      localStorage.setItem('board-swiper-previous', titleClass[classIndex + 1].href);
-      localStorage.setItem('board-swiper-next', titleClass[classIndex - 1].href);
-      localStorage.setItem('board-swiper-previous-title', titleClass[classIndex + 1].innerText);
-      localStorage.setItem('board-swiper-next-title', titleClass[classIndex - 1].innerText);
-      previousTitle = titleClass[classIndex + 1].innerText;
-      nextTitle = titleClass[classIndex - 1].innerText;
+	    
+        let tdTag
+          , tdTagLength    
+          , previousTdTag
+          , pTdTagLength    
+          , nextTdTag   
+          , nTdTagLength    
+          , classIndex
+          , aTagIndex
+          , pAtagIndex
+          , nAtagIndex    
+          , previousAtag
+          , nextAtag
+          , lastIndex
+          , targetATags;
+        tdTag = aTag.closest('td');	   
+	    
+        tdTagLength = tdTag.querySelectorAll('a').length; 	    
+        lastIndex = titleClass.length - 1;
+        classIndex = Array.from(titleClass).indexOf(tdTag);
+        aTagIndex = Array.from(tdTag.querySelectorAll('a')).indexOf(aTag);	   
+        targetATags = document.getElementsByClassName(aTag.className);
+        targetATagIndex = Array.from(targetATags).indexOf(aTag);	    
+
+        if (lastIndex !== classIndex) {  
+          previousTdTag = titleClass[classIndex + 1];      
+          pTdTagLength = previousTdTag.querySelectorAll('a').length;	      
+            
+          //      pAtagIndex = tdTagLength === pTdTagLength ? 
+          //		      Array.from(previousTdTag.querySelectorAll('a')).indexOf(aTag) :
+          //		      targetATagIndex + 1;	    
+          previousAtag = tdTagLength === pTdTagLength ? 
+		     previousTdTag.querySelectorAll('a')[aTagIndex] :
+		     targetATags[targetATagIndex + 1];
+          localStorage.setItem('board-swiper-previous', previousAtag.href);
+          localStorage.setItem('board-swiper-previous-title', previousAtag.innerText);
+        } else if (lastIndex === classIndex && lastIndex > 0) {
+          localStorage.setItem('board-swiper-previous', previousAtag);
+          localStorage.setItem('board-swiper-previous-title', '이 페이지의 마지막입니다.');
+        }
+        if (classIndex !== 0) {	    
+          nextTdTag = titleClass[classIndex - 1];	      
+          nTdTagLength = nextTdTag.querySelectorAll('a').length;	      
+          //    nAtagIndex = Array.from(nextTdTag.querySelectorAll('a')).indexOf(aTag);	    
+          nextAtag = tdTagLength === nTdTagLength ? 
+		      nextTdTag.querySelectorAll('a')[aTagIndex] :
+		     targetATags[targetATagIndex - 1];
+          localStorage.setItem('board-swiper-next-title', nextAtag.innerText);
+          localStorage.setItem('board-swiper-next', nextAtag.href);
+        } else if (classIndex === 0 && lastIndex > 0) {
+          localStorage.setItem('board-swiper-next-title', '이 페이지의 첫 글입니다.');
+          localStorage.setItem('board-swiper-next', nextAtag);
+        }
+        
+        
+        
+        
+           
+      }
     }
     aTag.addEventListener('click', (e) => {
-            	   
-      	    
-      let getClassName = e.target.className;
+      
+      
+      let getClassName = e.target.closest('td').className;
 		    
       
       if (getClassName.length === 0) {return;};	    
-      titleClass = document.querySelectorAll('.' + getClassName);
-      let eIndex = Array.from(titleClass).indexOf(e.target);
-      	    
-          
-         
+      titleClass = document.getElementsByClassName(getClassName);
+      let eIndex = Array.from(titleClass).indexOf(e.target.closest('td'));
+      
+      
+      
       isPreTitle = titleClass[eIndex + 1] === undefined ? false : true;
       isNeTitle = titleClass[eIndex - 1] === undefined ? false : true;
       pHref = isPreTitle ? titleClass[eIndex + 1].href : undefined;
@@ -54,7 +108,8 @@ function giveEvent() {
         localStorage.setItem('board-swiper-class-name',  getClassName);
         localStorage.setItem('board-swiper-current-title', e.target.innerText);
       }
-
+      //e.preventDefault();
+      //return false;
     });
   });
 
