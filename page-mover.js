@@ -79,9 +79,9 @@ function pageMover(element) {
     pHref = isPreTitle ? targetClass[targetIdx + 1].href : undefined;
     nHref = isNeTitle ? targetClass[targetIdx - 1].href : undefined;	
     console.log(targetClass[targetIdx + 1], isPreTitle, pHref);
-    localStorage.setItem('board-swiper-current-title', e.target.innerText);	
-    targetUrl !== 'undefined' ? localStorage.setItem('board-swiper-current-idx', targetIdx) : false;
-    targetUrl !== 'undefined' ? window.open(targetUrl, '_self') : false;	
+    targetUrl !== 'undefined' && targetUrl !== 'loading' ? localStorage.setItem('board-swiper-current-title', e.target.innerText) : false;
+    targetUrl !== 'undefined' && targetUrl !== 'loading' ? localStorage.setItem('board-swiper-current-idx', targetIdx) : false;
+    targetUrl !== 'undefined' && targetUrl !== 'loading' ? window.open(targetUrl, '_self') : false;	
   })
 
   pointer.addEventListener('mouseout', (e) => {
@@ -101,5 +101,12 @@ function pageMover(element) {
       pointer.style.display = 'none';
     }, 500);
   })
+ 
+ window.addEventListener('unload', (e) => {
+ pointer.innerText = 'No page'	 
+ e.preventDefault();
+ return false;
+ })
+	
 }
 
