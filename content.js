@@ -33,4 +33,11 @@ window.addEventListener("load", function() {
 	*/
 }, false);
 
+window.addEventListener('unload', () => {
+ localStorage.setItem('board-swiper-next-title', '로딩 중입니다');
+localStorage.setItem('board-swiper-previous-title', '로딩 중입니다');
+     localStorage.setItem('board-swiper-next', 'loading');
+      localStorage.setItem('board-swiper-previous', 'loading');
+
+})
 pageMover(document);
