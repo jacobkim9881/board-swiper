@@ -8,10 +8,11 @@ function giveEvent() {
     , targetTitle;
   console.log(localStorage.getItem('board-swiper-class-name'));
     titleClass = document.getElementsByClassName(localStorage.getItem('board-swiper-class-name'));	  
-
+console.log(document)
+   if (aTag1.length > 0) {	
       localStorage.setItem('board-swiper-next', 'no-url');
       localStorage.setItem('board-swiper-previous', 'no-url');
-	
+   }
   aTag1.forEach((aTag) => {
 //console.log(aTag)
 //console.log(titleClass);
@@ -78,8 +79,11 @@ function giveEvent() {
       console.log(classIndex);	
       console.log(nextTdTag);	    
       console.log(previousAtag)	    
-      console.log(nextAtag)	   
-           
+      console.log(nextAtag)	  
+      console.log(nextAtag.href);	    
+      console.log(localStorage.getItem('board-swiper-next'));
+      console.log(localStorage.getItem('board-swiper-previous'));
+    
     }
     }
       aTag.addEventListener('click', (e) => {
