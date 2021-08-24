@@ -1,3 +1,4 @@
+// for Ddanzi
 function giveEvent4(aClass, wraperTag, wraperClass) {
   let aTag1 = document.querySelectorAll(wraperTag + '.' + wraperClass);
   let isPreTitle

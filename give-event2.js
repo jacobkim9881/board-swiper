@@ -1,3 +1,4 @@
+// for Clien
 function giveEvent2(aClass, wraperTag, wraperClass, subClass) {
   console.log(aClass, wraperTag, wraperClass);	
 /*
