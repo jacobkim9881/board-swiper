@@ -5,11 +5,14 @@ function giveEvent() {
     , pHref
     , nHref
     , titleClass
-    , targetTitle;
+    , targetTitle
+    , currentStatus;
   console.log(localStorage.getItem('board-swiper-class-name'));
     titleClass = document.getElementsByClassName(localStorage.getItem('board-swiper-class-name'));	  
+    currentStatus = localStorage.getItem('board-swiper-status');
 console.log(document)
-   if (aTag1.length > 0) {	
+	console.log(currentStatus)
+   if (currentStatus !== 'ready') {	
       localStorage.setItem('board-swiper-next', 'no-url');
       localStorage.setItem('board-swiper-previous', 'no-url');
    }
@@ -76,6 +79,7 @@ console.log(document)
       localStorage.setItem('board-swiper-next-title', '이 페이지의 첫 글입니다.');
       localStorage.setItem('board-swiper-next', nextAtag);
       }
+      localStorage.setItem('board-swiper-status', 'ready');
       console.log(classIndex);	
       console.log(nextTdTag);	    
       console.log(previousAtag)	    
