@@ -79,9 +79,12 @@ function pageMover(element) {
     pHref = isPreTitle ? targetClass[targetIdx + 1].href : undefined;
     nHref = isNeTitle ? targetClass[targetIdx - 1].href : undefined;	
     console.log(targetClass[targetIdx + 1], isPreTitle, pHref);
-    targetUrl !== 'undefined' && targetUrl !== 'loading' ? localStorage.setItem('board-swiper-current-title', e.target.innerText) : false;
-    targetUrl !== 'undefined' && targetUrl !== 'loading' ? localStorage.setItem('board-swiper-current-idx', targetIdx) : false;
-    targetUrl !== 'undefined' && targetUrl !== 'loading' ? window.open(targetUrl, '_self') : false;	
+    if (targetUrl !== 'undefined' && targetUrl !== 'loading') {
+    localStorage.setItem('board-swiper-current-title', e.target.innerText);
+    localStorage.setItem('board-swiper-current-idx', targetIdx);
+    localStorage.setItem('board-swiper-status', 'not-ready');
+    window.open(targetUrl, '_self');	
+    }
   })
 
   pointer.addEventListener('mouseout', (e) => {
