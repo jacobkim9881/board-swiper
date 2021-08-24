@@ -57,6 +57,7 @@ console.log(aTag1)
       }
       console.log(classIndex);	
       console.log(nextTdTag);	    
+      localStorage.setItem('board-swiper-status', 'ready');
       console.log(previousAtag)	    
       console.log(nextAtag)	   
            

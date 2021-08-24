@@ -72,6 +72,7 @@ console.log(classIndex)
       localStorage.setItem('board-swiper-next-title', nTextClass.innerText);
       localStorage.setItem('board-swiper-next', nextAtag.href);
       }
+      localStorage.setItem('board-swiper-status', 'ready');
       console.log(classIndex);	
       console.log(previousAtag)	    
       console.log(nextAtag)	   
