@@ -10,7 +10,10 @@ function pageMover(element) {
     , previousTitle
     , nextTitle
     , pHref
-    , nHref;
+    , nHref
+    , pCategory
+    , nCategory	
+    , currentTitle;
   pointer.id = 'board-swiper';
   pointer.style.position = 'fixed';
   //pointer.style.borderRadius = '50%';
@@ -49,6 +52,8 @@ function pageMover(element) {
     pointer.style.display = isScrolled > 200 ? 'none' : 'block';	  
       targetName = posX > e.clientX ? 'previous' : 'next'	  
       targetUrl = localStorage.getItem('board-swiper-' + targetName);
+      pCategory = localStorage.getItem('board-swiper-previous-category');
+      nCategory = localStorage.getItem('board-swiper-next-category'); 	    
       previousTitle = localStorage.getItem('board-swiper-previous-title');
       nextTitle = localStorage.getItem('board-swiper-next-title');
       pointer.style.display = targetUrl === 'no-url' ? 'none' : 'block';	    
@@ -56,7 +61,8 @@ function pageMover(element) {
 	  console.log(targetIdx)
       pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
       pointer.style.color = 'black'; 
-      pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? previousTitle : nextTitle;	
+      pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? pCategory + previousTitle : nCategory + nextTitle;	
+      currentTitle = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : posX > e.clientX ? previousTitle : nextTitle;	
       pointer.style.top = (e.clientY - 10) + 'px';
       posX = posX > e.clientX ? (e.clientX - 270) + 'px' : (e.clientX + 30) + 'px';	  
       pointer.style.left = posX;
@@ -80,9 +86,11 @@ function pageMover(element) {
     nHref = isNeTitle ? targetClass[targetIdx - 1].href : undefined;	
     console.log(targetClass[targetIdx + 1], isPreTitle, pHref);
     if (targetUrl !== 'undefined' && targetUrl !== 'loading') {
-    localStorage.setItem('board-swiper-current-title', e.target.innerText);
+    localStorage.setItem('board-swiper-current-title', currentTitle);
     localStorage.setItem('board-swiper-current-idx', targetIdx);
     localStorage.setItem('board-swiper-status', 'not-ready');
+    localStorage.setItem('board-swiper-previous-category', '')
+    localStorage.setItem('board-swiper-next-category', '')
     window.open(targetUrl, '_self');	
     }
   })

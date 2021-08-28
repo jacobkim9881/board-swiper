@@ -20,7 +20,7 @@
 	  "js": [
 		  "page-mover.js",
 		  "give-event.js", "give-event2.js", "give-event3.js", 
-		  "give-event4.js",
+		  "give-event4.js", "give-event5.js",
 		  "list-event.js", 
 		  "site-list.js", "content.js"
 	  ]

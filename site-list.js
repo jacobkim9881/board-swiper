@@ -58,6 +58,21 @@ let siteList =
 		    "wraper-tag": "td",
 		    "a-class": "",
 	    }
+    },
+"bbs.ruliweb.com": {
+     "host" : "bbs.ruliweb.com",
+	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
+		    return giveEvent5(aClass, wraperTag, wraperClass, subClass)},
+	"wraper-class": "relative",
+		    "wraper-tag": "div",
+		    "a-class": "deco",
+		    "sub-class": "",
+	    "isListDifferent" : false,
+	    "list-click-event": {
+	"wraper-class": "relative",
+		    "wraper-tag": "div",
+		    "a-class": "deco",	   
+	    }
     }
 
 	}
