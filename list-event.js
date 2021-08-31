@@ -4,10 +4,10 @@ function listEvent(aClass, wraperTag, wraperClass) {
  let aTags = document.querySelectorAll('a.' + aClass);
  if (aTags === null) {return;}	
  if (aTags.length === 0) {return;}
- console.log(aTags);	
+ 
  aTags.forEach( (aTag) => {
     aTag.addEventListener('click', (e) => {
-      console.log(e)      	 
+      
 /*	    
       let listWraperTag
       , listWraperClass
@@ -17,7 +17,7 @@ function listEvent(aClass, wraperTag, wraperClass) {
       localStorage.setItem('board-swiper-list-wraper-class', listWraperClass); 	 
       localStorage.setItem('board-swiper-list-a-class', e.target.className); 	 
       */
-	    console.log(e.target.innerText)
+	    
       localStorage.setItem('board-swiper-current-title', e.target.innerText);
       //e.preventDefault();
       //return false;

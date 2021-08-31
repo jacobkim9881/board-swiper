@@ -1,5 +1,5 @@
-console.log(localStorage.getItem('board-swiper-previous'));
-console.log(document.readyState);
+
+
 let hostUrl = window.location.hostname;
 /*
 localStorage.setItem('board-swiper-next-title', '로딩 중입니다');
@@ -8,8 +8,8 @@ localStorage.setItem('board-swiper-previous-title', '로딩 중입니다');
       localStorage.setItem('board-swiper-previous', 'loading');
 */
 window.addEventListener("load", function() {
-  console.log(document);	
-  console.log(document.readyState);
+  
+  
 
   if (siteList[hostUrl]) {	 
   let getAClass, getWraperTag, getWraperClass, getListAClass, getSubClass;
@@ -28,7 +28,7 @@ window.addEventListener("load", function() {
 /*
   switch (hostUrl) {
    case 'www.bobaedream.co.kr':
-		  console.log('hollo');
+		  
   giveEvent3(siteList[1]["a-class"], siteList[1]["wraper-tag"], siteList[1]["wraper-class"]);
   listEvent(siteList[1]["list-click-event"]["a-class"]);
   return;
@@ -38,14 +38,14 @@ window.addEventListener("load", function() {
   }
 	*/
 }, false);
-console.log('helloo');
+
 
 window.addEventListener('unload', () => {
-console.log(window.location.hostname)	
-console.log(document)	
+
+
    let aTag1 = document.querySelectorAll('a[href]');
 if(aTag1.length > 0) {	
-console.log(aTag1)
+
 	
 localStorage.setItem('board-swiper-next-title', '로딩 중입니다');
 localStorage.setItem('board-swiper-previous-title', '로딩 중입니다');
