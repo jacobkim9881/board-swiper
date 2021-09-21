@@ -73,6 +73,21 @@ let siteList =
 		    "wraper-tag": "div",
 		    "a-class": "deco",	   
 	    }
+    },
+"cafe.daum.net": {
+     "host" : "cafe.daum.net",
+	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
+		    return giveEvent6(aClass, wraperTag, wraperClass, subClass)},
+	"wraper-class": "title_wrapper",
+		    "wraper-tag": "span",
+		    "a-class": "txt_item",
+		    "sub-class": "",
+	    "isListDifferent" : false,
+	    "list-click-event": {
+	"wraper-class": "title_wrapper",
+		    "wraper-tag": "span",
+		    "a-class": "txt_item",	   
+	    }
     }
 
 	}

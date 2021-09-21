@@ -1,6 +1,6 @@
 {
   "name": "__MSG_appName__",
-  "version": "1.0.2.1",
+  "version": "1.0.2.2",
   "default_locale": "en",
   "description": "__MSG_appDesc__",
   "icons": {
@@ -20,7 +20,7 @@
 	  "js": [
 		  "page-mover.js",
 		  "give-event.js", "give-event2.js", "give-event3.js", 
-		  "give-event4.js", "give-event5.js",
+		  "give-event4.js", "give-event5.js", "give-event6.js",
 		  "list-event.js", 
 		  "site-list.js", "content.js"
 	  ]
