@@ -92,7 +92,7 @@ function giveEvent() {
     }
       aTag.addEventListener('click', (e) => {
       
-      
+      if (e.target.closest('td') === null) {return};      
       let getClassName = e.target.closest('td').className;
 		    
       
