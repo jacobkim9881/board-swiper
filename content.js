@@ -55,3 +55,4 @@ localStorage.setItem('board-swiper-previous-title', '로딩 중입니다');
 }
 })
 pageMover(document);
+//pageTurner(document);
