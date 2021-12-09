@@ -1,9 +1,8 @@
-function pageTurner(element) {
+function pageTurner(element, targetName) {
   if (element.body === null) {return;};
 
-  let pointer = element.createElement('div')
+  let pointer = element.createElement('button')
     , targetUrl
-    , targetName
     , targetClass
     , targetIdx
     , isPreTitle
@@ -16,20 +15,21 @@ function pageTurner(element) {
     , nCategory	
     , currentTitle
     , targetTop;
-  pointer.id = 'board-swiper';
+  pointer.id = 'board-swiper' + targetName;
   pointer.style.position = 'absolute';
   //pointer.style.borderRadius = '50%';
-  pointer.style.border = 'hsl(0, 0%, 80%)';
-  pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
-  pointer.style.width = '200px';
-  pointer.style.padding = '10px 20px 10px 30px';
+//  pointer.style.border = 'hsl(0, 0%, 80%)';
+//  pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
+  pointer.style.height = '40px';  
+  pointer.style.width = '50px';
+//  pointer.style.padding = '10px 20px 10px 30px';
   pointer.style.zIndex = '10000';
-  pointer.style.fontSize = '13px';
+  pointer.style.fontSize = '30px';
   pointer.style.right = '100px';
-  targetTop = targetName === 'next' ? - 50 : 50;	
+  targetTop = targetName === 'next' ? - 25 : 25;	
 
   let mouseTimer
-     , targetName = 'next'	  
+//     , targetName = 'next'	  
 //      targetName = 'previous' : 'next'	  
       targetUrl = localStorage.getItem('board-swiper-' + targetName);
       pCategory = localStorage.getItem('board-swiper-previous-category');
@@ -38,29 +38,32 @@ function pageTurner(element) {
       nextTitle = localStorage.getItem('board-swiper-next-title');
       pointer.style.display = 'none';	    
 //      pointer.style.display = targetUrl === 'no-url' ? 'none' : 'block';	    
-	  
-	  
-      pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
+//	  console.log(targetUrl)
+//	 console.log(nextTitle) 
+//      pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
       pointer.style.color = 'black'; 
-      pointer.innerText = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' :  nCategory + nextTitle;	
+      pointer.innerText = targetUrl === 'undefined' ? 'X' :
+		targetName === 'next' ? '▲' : '▼'; 
+		//nCategory + nextTitle;	
       currentTitle = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : nextTitle;	
-	  console.log(element.body)
-	console.log(element)
-	console.log(pointer)
-	console.log(element.querySelector('#primaryContent'));
+//	  console.log(element.body)
+//	console.log(element)
+//	console.log(pointer)
+//	console.log(element.querySelector('#primaryContent'));
 //  if (element === null) {return;};
       element.body.appendChild(pointer); 
-	console.log(pointer)
+//	console.log(pointer)
 
   element.addEventListener('scroll', (e) => {
+//	  console.log('scrolled')
   pointer.style.top = (window.innerHeight * 1/2 + window.scrollY + targetTop) + 'px';
     pointer.style.display = 'block';	  
   });
 
 
   pointer.addEventListener('click', (e) => {
-    pointer.style.backgroundColor = 'hsl(230, 100%, 50%, 0.5)';
-    pointer.style.color = 'white';
+//    pointer.style.backgroundColor = 'hsl(230, 100%, 50%, 0.5)';
+//    pointer.style.color = 'white';
     
     targetClass = element.querySelectorAll('.' + localStorage.getItem('board-swiper-class-name'));
     targetIdx = parseInt(targetIdx);	
@@ -80,6 +83,7 @@ function pageTurner(element) {
     }
   })
 
+	/*
   pointer.addEventListener('mouseout', (e) => {
     pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
     pointer.style.color = 'black';
@@ -97,7 +101,8 @@ function pageTurner(element) {
       pointer.style.display = 'none';
     }, 500);
   })
- 
+ */
+
  window.addEventListener('unload', (e) => {
  pointer.innerText = 'No page'	 
  e.preventDefault();
