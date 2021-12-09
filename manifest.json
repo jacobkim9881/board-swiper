@@ -4,9 +4,16 @@
   "default_locale": "en",
   "description": "__MSG_appDesc__",
   "icons": {
-  "16": "icon/icon16.png",
-  "32": "icon/icon32.png",
-  "64": "icon/icon64.png"
+   "16": "icon/icon16.png",
+   "32": "icon/icon32.png",
+   "64": "icon/icon64.png"
+  },
+ "action": {
+    "default_popup": "popup.html",       
+    "default_icon": {
+    "16": "icon/icon16.png",
+    "32": "icon/icon32.png"
+  }
 },
   "author": "jacobkim9881",
  "background": {
@@ -27,6 +34,7 @@
   }
   ],
   "host_permissions": ["<all_urls>"],
+  "permissions": ["declarativeContent"],
   "manifest_version": 3
 }
 
