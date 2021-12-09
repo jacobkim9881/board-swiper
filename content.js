@@ -37,6 +37,14 @@ window.addEventListener("load", function() {
   return;		  
   }
 	*/
+let mode = localStorage.getItem('board-swiper-mode');
+//	console.log(mode)
+if (mode === 'swiper') {
+  pageMover(document);
+} else {
+  pageTurner(document, 'next');
+  pageTurner(document, 'previous');
+}
 }, false);
 
 
@@ -54,5 +62,11 @@ localStorage.setItem('board-swiper-previous-title', '로딩 중입니다');
       
 }
 })
-pageMover(document);
-//pageTurner(document);
+
+
+chrome.runtime.onMessage.addListener((msg, _, sendRes) => {
+//	console.log(msg)
+  localStorage.setItem('board-swiper-mode', msg.mode);
+})
+//pageMover(document);
+//pageTurner(document, 'next');
