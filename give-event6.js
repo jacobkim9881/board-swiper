@@ -1,3 +1,4 @@
+// for daum cafe
 function giveEvent6() {
   let aTag1 = document.querySelectorAll('a[href]');
   let isPreTitle
