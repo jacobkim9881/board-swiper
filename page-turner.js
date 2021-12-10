@@ -39,13 +39,12 @@ function pageTurner(element, targetName) {
       pointer.style.display = 'none';	    
 //      pointer.style.display = targetUrl === 'no-url' ? 'none' : 'block';	    
 //	  console.log(targetUrl)
-//	 console.log(nextTitle) 
 //      pointer.style.backgroundColor = 'hsl(0, 0%, 80%, 0.5)';
       pointer.style.color = 'black'; 
       pointer.innerText = targetUrl === 'undefined' ? 'X' :
 		targetName === 'next' ? '▲' : '▼'; 
 		//nCategory + nextTitle;	
-      currentTitle = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : nextTitle;	
+      currentTitle = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : localStorage.getItem(`board-swiper-${targetName}-title`);	
 //	  console.log(element.body)
 //	console.log(element)
 //	console.log(pointer)
