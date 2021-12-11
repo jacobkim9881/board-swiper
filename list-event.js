@@ -1,14 +1,14 @@
 function listEvent(aClass, wraperTag, wraperClass) {
 // let wraperTags = document.querySelectorAll(wraperTag + '.' + wraperClass);
 //  if (wraperTags.length !== 0) {return;};	
- let aTags = document.querySelectorAll('a.' + aClass);
- if (aTags === null) {return;}	
- if (aTags.length === 0) {return;}
+  let aTags = document.querySelectorAll('a.' + aClass);
+  if (aTags === null) {return;}	
+  if (aTags.length === 0) {return;}
  
- aTags.forEach( (aTag) => {
+  aTags.forEach( (aTag) => {
     aTag.addEventListener('click', (e) => {
       
-/*	    
+      /*	    
       let listWraperTag
       , listWraperClass
       listWraperTag = e.target.parentNode.tagName.toLowerCase();	    
@@ -23,5 +23,5 @@ function listEvent(aClass, wraperTag, wraperClass) {
       //return false;
     });
 
- });
+  });
 }

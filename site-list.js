@@ -2,10 +2,10 @@ let siteList =
 	
 	{
 
- "cafe.naver.com":   {
-     "host" : 'cafe.naver.com',
+	  "cafe.naver.com":   {
+	    "host" : 'cafe.naver.com',
 	    "custom-function" : 1,
-	"wraper-class": "tit_area",
+	    "wraper-class": "tit_area",
 		    "wraper-tag": "div",
 		    "a-class": "tit",
 	    "isListDifferent" : true,
@@ -14,12 +14,12 @@ let siteList =
 	    "wraper-class": "inner_list",
 	    "wraper-tag": "div",
 	    }
-    },
-"www.bobaedream.co.kr":  {
-     "host" : 'www.bobaedream.co.kr',
+	  },
+	  "www.bobaedream.co.kr":  {
+	    "host" : 'www.bobaedream.co.kr',
 	    "custom-function" : function(aClass, wraperTag, wraperClass) {
 		    return giveEvent3(aClass, wraperTag, wraperClass)},
-	"wraper-class": "author",
+	    "wraper-class": "author",
 		    "wraper-tag": "td",
 		    "a-class": "",
 	    "isListDifferent" : true,
@@ -28,67 +28,67 @@ let siteList =
 	    "wraper-class": "pl14",
 	    "wraper-tag": "td",
 	    }
-    },
-"www.clien.net": {
-     "host" : 'www.clien.net',
+	  },
+	  "www.clien.net": {
+	    "host" : 'www.clien.net',
 	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
 		    return giveEvent2(aClass, wraperTag, wraperClass, subClass)},
-	"wraper-class": "list_title",
+	    "wraper-class": "list_title",
 		    "wraper-tag": "div",
 		    "a-class": "list_subject",
 		    "sub-class": "subject_fixed",
 	    "isListDifferent" : true,
 	    "list-click-event": {
-	"wraper-class": "list_title",
+	      "wraper-class": "list_title",
 		    "wraper-tag": "div",
 		    "a-class": "list_subject",
 	    }
-    },
-"www.ddanzi.com": {
-     "host" : "www.ddanzi.com",
+	  },
+	  "www.ddanzi.com": {
+	    "host" : "www.ddanzi.com",
 	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
 		    return giveEvent4(aClass, wraperTag, wraperClass, subClass)},
-	"wraper-class": "title",
+	    "wraper-class": "title",
 		    "wraper-tag": "td",
 		    "a-class": "",
 		    "sub-class": "",
 	    "isListDifferent" : false,
 	    "list-click-event": {
-	"wraper-class": "title",
+	      "wraper-class": "title",
 		    "wraper-tag": "td",
 		    "a-class": "",
 	    }
-    },
-"bbs.ruliweb.com": {
-     "host" : "bbs.ruliweb.com",
+	  },
+	  "bbs.ruliweb.com": {
+	    "host" : "bbs.ruliweb.com",
 	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
 		    return giveEvent5(aClass, wraperTag, wraperClass, subClass)},
-	"wraper-class": "relative",
+	    "wraper-class": "relative",
 		    "wraper-tag": "div",
 		    "a-class": "deco",
 		    "sub-class": "",
 	    "isListDifferent" : false,
 	    "list-click-event": {
-	"wraper-class": "relative",
+	      "wraper-class": "relative",
 		    "wraper-tag": "div",
 		    "a-class": "deco",	   
 	    }
-    },
-"cafe.daum.net": {
-     "host" : "cafe.daum.net",
+	  },
+	  "cafe.daum.net": {
+	    "host" : "cafe.daum.net",
 	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
 		    return giveEvent6(aClass, wraperTag, wraperClass, subClass)},
-	"wraper-class": "title_wrapper",
+	    "wraper-class": "title_wrapper",
 		    "wraper-tag": "span",
 		    "a-class": "txt_item",
 		    "sub-class": "",
 	    "isListDifferent" : false,
 	    "list-click-event": {
-	"wraper-class": "title_wrapper",
+	      "wraper-class": "title_wrapper",
 		    "wraper-tag": "span",
 		    "a-class": "txt_item",	   
 	    }
-    }
+	  }
 
 	}
 	

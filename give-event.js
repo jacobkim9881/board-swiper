@@ -8,78 +8,78 @@ function giveEvent() {
     , targetTitle
     , currentStatus;
   
-    titleClass = document.getElementsByClassName(localStorage.getItem('board-swiper-class-name'));	  
-    currentStatus = localStorage.getItem('board-swiper-status');
+  titleClass = document.getElementsByClassName(localStorage.getItem('board-swiper-class-name'));	  
+  currentStatus = localStorage.getItem('board-swiper-status');
 
 	
-   if (currentStatus !== 'ready') {	
-      localStorage.setItem('board-swiper-next', 'no-url');
-      localStorage.setItem('board-swiper-previous', 'no-url');
-   }
+  if (currentStatus !== 'ready') {	
+    localStorage.setItem('board-swiper-next', 'no-url');
+    localStorage.setItem('board-swiper-previous', 'no-url');
+  }
   aTag1.forEach((aTag) => {
-//
-//
+    //
+    //
     targetTitle = localStorage.getItem('board-swiper-current-title');
     //
     if (titleClass.length > 0 && aTag.closest('td') !== null) {	 
-    if (aTag.innerText.trim() === targetTitle || aTag.innerText === targetTitle ) {  
+      if (aTag.innerText.trim() === targetTitle || aTag.innerText === targetTitle ) {  
 		 
 	 
 	      
 	    
-      let tdTag
-	, tdTagLength    
-	, previousTdTag
-	, pTdTagLength    
-	, nextTdTag   
-	, nTdTagLength    
-        , classIndex
-	, aTagIndex
-	, pAtagIndex
-	, nAtagIndex    
-	, previousAtag
-	, nextAtag
-	, lastIndex
-	, targetATags;
-      tdTag = aTag.closest('td');	   
+        let tdTag
+          , tdTagLength    
+          , previousTdTag
+          , pTdTagLength    
+          , nextTdTag   
+          , nTdTagLength    
+          , classIndex
+          , aTagIndex
+          , pAtagIndex
+          , nAtagIndex    
+          , previousAtag
+          , nextAtag
+          , lastIndex
+          , targetATags;
+        tdTag = aTag.closest('td');	   
 	    
-      tdTagLength = tdTag.querySelectorAll('a').length; 	    
-      lastIndex = titleClass.length - 1;
-      classIndex = Array.from(titleClass).indexOf(tdTag);
-      aTagIndex = Array.from(tdTag.querySelectorAll('a')).indexOf(aTag);	   
-      targetATags = document.getElementsByClassName(aTag.className);
-      targetATagIndex = Array.from(targetATags).indexOf(aTag);	    
+        tdTagLength = tdTag.querySelectorAll('a').length; 	    
+        lastIndex = titleClass.length - 1;
+        classIndex = Array.from(titleClass).indexOf(tdTag);
+        aTagIndex = Array.from(tdTag.querySelectorAll('a')).indexOf(aTag);	   
+        targetATags = document.getElementsByClassName(aTag.className);
+        targetATagIndex = Array.from(targetATags).indexOf(aTag);	    
 
-      if (lastIndex !== classIndex) {  
-      previousTdTag = titleClass[classIndex + 1];      
-      pTdTagLength = previousTdTag.querySelectorAll('a').length;	      
+        if (lastIndex !== classIndex) {  
+          previousTdTag = titleClass[classIndex + 1];      
+          pTdTagLength = previousTdTag.querySelectorAll('a').length;	      
             
-//      pAtagIndex = tdTagLength === pTdTagLength ? 
-//		      Array.from(previousTdTag.querySelectorAll('a')).indexOf(aTag) :
-//		      targetATagIndex + 1;	    
-      previousAtag = tdTagLength === pTdTagLength ? 
+          //      pAtagIndex = tdTagLength === pTdTagLength ? 
+          //		      Array.from(previousTdTag.querySelectorAll('a')).indexOf(aTag) :
+          //		      targetATagIndex + 1;	    
+          previousAtag = tdTagLength === pTdTagLength ? 
 		     previousTdTag.querySelectorAll('a')[aTagIndex] :
 		     targetATags[targetATagIndex + 1];
-      localStorage.setItem('board-swiper-previous', previousAtag.href);
-      localStorage.setItem('board-swiper-previous-title', previousAtag.innerText);
-      } else if (lastIndex === classIndex && lastIndex > 0) {
-      localStorage.setItem('board-swiper-previous', previousAtag);
-      localStorage.setItem('board-swiper-previous-title', '이 페이지의 마지막입니다.');
-      }
-      if (classIndex !== 0) {	    
-      nextTdTag = titleClass[classIndex - 1];	      
-      nTdTagLength = nextTdTag.querySelectorAll('a').length;	      
-//    nAtagIndex = Array.from(nextTdTag.querySelectorAll('a')).indexOf(aTag);	    
-      nextAtag = tdTagLength === nTdTagLength ? 
+          localStorage.setItem('board-swiper-previous', previousAtag.href);
+          localStorage.setItem('board-swiper-previous-title', previousAtag.innerText);
+        } else if (lastIndex === classIndex && lastIndex > 0) {
+          localStorage.setItem('board-swiper-previous', previousAtag);
+          localStorage.setItem('board-swiper-previous-title', '이 페이지의 마지막입니다.');
+        }
+        if (classIndex !== 0) {	    
+          nextTdTag = titleClass[classIndex - 1];	      
+          nTdTagLength = nextTdTag.querySelectorAll('a').length;	      
+          //    nAtagIndex = Array.from(nextTdTag.querySelectorAll('a')).indexOf(aTag);	    
+          nextAtag = tdTagLength === nTdTagLength ? 
 		      nextTdTag.querySelectorAll('a')[aTagIndex] :
 		     targetATags[targetATagIndex - 1];
-      localStorage.setItem('board-swiper-next-title', nextAtag.innerText);
-      localStorage.setItem('board-swiper-next', nextAtag.href);
-      } else if (classIndex === 0 && lastIndex > 0) {
-      localStorage.setItem('board-swiper-next-title', '이 페이지의 첫 글입니다.');
-      localStorage.setItem('board-swiper-next', nextAtag);
-      }
-      localStorage.setItem('board-swiper-status', 'ready');
+          localStorage.setItem('board-swiper-next-title', nextAtag.innerText);
+          localStorage.setItem('board-swiper-next', nextAtag.href);
+        } else if (classIndex === 0 && lastIndex > 0) {
+          localStorage.setItem('board-swiper-next-title', '이 페이지의 첫 글입니다.');
+          localStorage.setItem('board-swiper-next', nextAtag);
+        }
+        localStorage.setItem('board-swiper-status', 'ready');
       
       
       
@@ -88,9 +88,9 @@ function giveEvent() {
       
       
     
+      }
     }
-    }
-      aTag.addEventListener('click', (e) => {
+    aTag.addEventListener('click', (e) => {
       
       if (e.target.closest('td') === null) {return};      
       let getClassName = e.target.closest('td').className;

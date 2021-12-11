@@ -49,7 +49,7 @@ function pageMover(element) {
     let isSwiped = e.clientX - posX;
 
     if (isSwiped >= 30 || isSwiped <= -30) {
-    pointer.style.display = isScrolled > 200 ? 'none' : 'block';	  
+      pointer.style.display = isScrolled > 200 ? 'none' : 'block';	  
       targetName = posX > e.clientX ? 'previous' : 'next'	  
       targetUrl = localStorage.getItem('board-swiper-' + targetName);
       pCategory = localStorage.getItem('board-swiper-previous-category');
@@ -86,12 +86,12 @@ function pageMover(element) {
     nHref = isNeTitle ? targetClass[targetIdx - 1].href : undefined;	
     
     if (targetUrl !== 'undefined' && targetUrl !== 'loading') {
-    localStorage.setItem('board-swiper-current-title', currentTitle);
-    localStorage.setItem('board-swiper-current-idx', targetIdx);
-    localStorage.setItem('board-swiper-status', 'not-ready');
-    localStorage.setItem('board-swiper-previous-category', '')
-    localStorage.setItem('board-swiper-next-category', '')
-    window.open(targetUrl, '_self');	
+      localStorage.setItem('board-swiper-current-title', currentTitle);
+      localStorage.setItem('board-swiper-current-idx', targetIdx);
+      localStorage.setItem('board-swiper-status', 'not-ready');
+      localStorage.setItem('board-swiper-previous-category', '')
+      localStorage.setItem('board-swiper-next-category', '')
+      window.open(targetUrl, '_self');	
     }
   })
 
@@ -113,11 +113,11 @@ function pageMover(element) {
     }, 500);
   })
  
- window.addEventListener('unload', (e) => {
- pointer.innerText = 'No page'	 
- e.preventDefault();
- return false;
- })
+  window.addEventListener('unload', (e) => {
+    pointer.innerText = 'No page'	 
+    e.preventDefault();
+    return false;
+  })
 	
 }
 

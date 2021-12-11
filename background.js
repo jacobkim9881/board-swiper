@@ -11,7 +11,7 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 
   chrome.runtime.sendMessage(undefined,
-   { mode: 'button-md'
-     }
+    { mode: 'button-md'
+    }
   );
 });
