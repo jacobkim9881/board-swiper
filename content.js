@@ -23,7 +23,7 @@ window.addEventListener("load", function() {
 	  listEvent(getListAClass);
     }
   } else {
-    giveEvent();
+    //giveEvent();
   }
   /*
   switch (hostUrl) {
@@ -38,7 +38,7 @@ window.addEventListener("load", function() {
   }
 	*/
   let mode = localStorage.getItem('board-swiper-mode');
-  //	console.log(mode)
+  //console.log(mode)
   if (mode === 'swiper') {
     pageMover(document);
   } else {
@@ -65,7 +65,7 @@ window.addEventListener('unload', () => {
 
 
 chrome.runtime.onMessage.addListener((msg, _, sendRes) => {
-//	console.log(msg)
+//console.log(msg)
   localStorage.setItem('board-swiper-mode', msg.mode);
 })
 //pageMover(document);

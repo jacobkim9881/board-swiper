@@ -15,6 +15,48 @@ let siteList =
 	    "wraper-tag": "div",
 	    }
 	  },
+	  "hygall.com":  {
+	    "host" : 'hygall.com',
+	    "custom-function" : function() {
+		    return giveEvent()},
+	    "wraper-class": "",
+		    "wraper-tag": "",
+		    "a-class": "",
+	    "isListDifferent" : false,
+	    "list-click-event": {
+		    "a-class" : "",
+	    "wraper-class": "",
+	    "wraper-tag": "",
+	    }
+	  },
+	  "www.inven.co.kr":  {
+	    "host" : 'www.inven.co.kr',
+	    "custom-function" : function() {
+		    return giveEvent()},
+	    "wraper-class": "",
+		    "wraper-tag": "",
+		    "a-class": "",
+	    "isListDifferent" : false,
+	    "list-click-event": {
+		    "a-class" : "",
+	    "wraper-class": "",
+	    "wraper-tag": "",
+	    }
+	  },
+	  "www.82cook.com":  {
+	    "host" : 'www.82cook.com',
+	    "custom-function" : function() {
+		    return giveEvent()},
+	    "wraper-class": "",
+		    "wraper-tag": "",
+		    "a-class": "",
+	    "isListDifferent" : false,
+	    "list-click-event": {
+		    "a-class" : "",
+	    "wraper-class": "",
+	    "wraper-tag": "",
+	    }
+	  },
 	  "www.bobaedream.co.kr":  {
 	    "host" : 'www.bobaedream.co.kr',
 	    "custom-function" : function(aClass, wraperTag, wraperClass) {
@@ -29,6 +71,7 @@ let siteList =
 	    "wraper-tag": "td",
 	    }
 	  },
+	  /*
 	  "www.clien.net": {
 	    "host" : 'www.clien.net',
 	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
@@ -44,6 +87,7 @@ let siteList =
 		    "a-class": "list_subject",
 	    }
 	  },
+	  */
 	  "www.ddanzi.com": {
 	    "host" : "www.ddanzi.com",
 	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {

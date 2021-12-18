@@ -39,9 +39,9 @@ function pageTurner(element, targetName) {
   currentTitle = targetUrl === 'undefined' ? '넘어갈 페이지가 없습니다' : localStorage.getItem(`board-swiper-${targetName}-title`);	
   element.body.appendChild(pointer); 
 
-  element.addEventListener('scroll', (e) => {
+  element.addEventListener('scroll', (e) => {    
     pointer.style.top = (window.innerHeight * 1/2 + window.scrollY + targetTop) + 'px';
-    pointer.style.display = 'block';	  
+    pointer.style.display = targetUrl === 'loading' ? 'none' : 'block';	  
   });
 
 

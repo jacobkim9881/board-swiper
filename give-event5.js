@@ -9,11 +9,11 @@ function giveEvent5() {
     , titleClass
     , targetTitle
     , currentStatus;
-  console.log(localStorage.getItem('board-swiper-class-name'));
+  //console.log(localStorage.getItem('board-swiper-class-name'));
   titleClass = document.getElementsByClassName(localStorage.getItem('board-swiper-class-name'));	  
   currentStatus = localStorage.getItem('board-swiper-status');
-  console.log(document)
-  console.log(currentStatus)
+  //console.log(document)
+  //console.log(currentStatus)
   if (currentStatus !== 'ready') {	
     localStorage.setItem('board-swiper-next', 'no-url');
     localStorage.setItem('board-swiper-previous', 'no-url');
@@ -25,10 +25,10 @@ function giveEvent5() {
     //console.log(aTag.innerText, targetTitle);	 
     if (titleClass.length > 0 && aTag.closest('td') !== null) {	 
       if (aTag.innerText.trim() === targetTitle || aTag.innerText === targetTitle ) {  
-		 console.log(aTag.innerText[1], targetTitle[1]);
-	 console.log(aTag.innerText[1] === targetTitle[1]); 
-	      console.log(targetTitle);
-	    console.log(aTag);
+//console.log(aTag.innerText[1], targetTitle[1]);
+//console.log(aTag.innerText[1] === targetTitle[1]); 
+//console.log(targetTitle);
+//console.log(aTag);
         let tdTag
           , tdTagLength    
           , previousTdTag
@@ -46,7 +46,7 @@ function giveEvent5() {
           , lastIndex
           , targetATags;
         tdTag = aTag.closest('td');	   
-	    console.log(tdTag)
+	    //console.log(tdTag)
         tdTagLength = tdTag.querySelectorAll('a').length; 	    
         lastIndex = titleClass.length - 1;
         classIndex = Array.from(titleClass).indexOf(tdTag);
@@ -83,38 +83,38 @@ function giveEvent5() {
           localStorage.setItem('board-swiper-next', nextAtag);
         }
         localStorage.setItem('board-swiper-status', 'ready');
-        console.log(classIndex);	
-        console.log(nextTdTag);	    
-        console.log(previousAtag)	    
-        console.log(nextAtag)	  
-        console.log(nextAtag.href);	    
-        console.log(localStorage.getItem('board-swiper-next'));
-        console.log(localStorage.getItem('board-swiper-previous'));
+        //console.log(classIndex);	
+        //console.log(nextTdTag);	    
+        //console.log(previousAtag)	    
+        //console.log(nextAtag)	  
+        //console.log(nextAtag.href);	    
+        //console.log(localStorage.getItem('board-swiper-next'));
+        //console.log(localStorage.getItem('board-swiper-previous'));
     
       }
     }
     aTag.addEventListener('click', (e) => {
-      console.log(e)      	   
-      console.log(e.target.tagName);	   	    
+      //console.log(e)      	   
+      //console.log(e.target.tagName);	   	    
       let getClassName = e.target.closest('td').className;
-		    console.log(getClassName.length);
-      console.log(getClassName);
+		    //console.log(getClassName.length);
+      //console.log(getClassName);
       if (getClassName.length === 0) {return;};	    
       titleClass = document.getElementsByClassName(getClassName);
       let eIndex = Array.from(titleClass).indexOf(e.target.closest('td'));
-      console.log(eIndex)	    
-      console.log(titleClass[eIndex + 1]);    
-      console.log(titleClass[eIndex - 1]);   
+      //console.log(eIndex)	    
+      //console.log(titleClass[eIndex + 1]);    
+      //console.log(titleClass[eIndex - 1]);   
       isPreTitle = titleClass[eIndex + 1] === undefined ? false : true;
       isNeTitle = titleClass[eIndex - 1] === undefined ? false : true;
       pHref = isPreTitle ? titleClass[eIndex + 1].href : undefined;
       nHref = isNeTitle ? titleClass[eIndex - 1].href : undefined;
-      console.log(e.target)	    
-      console.log(e)	   
-      console.log(pHref, nHref);    
-      console.log(Array.from(titleClass));	    
-      console.log(titleClass, eIndex, pHref);	   
-      console.log(e.target.innerText)	    
+      //console.log(e.target)	    
+      //console.log(e)	   
+      //console.log(pHref, nHref);    
+      //console.log(Array.from(titleClass));	    
+      //console.log(titleClass, eIndex, pHref);	   
+      //console.log(e.target.innerText)	    
       if (titleClass.length > 1) {	    
         localStorage.setItem('board-swiper-class-name',  getClassName);
         localStorage.setItem('board-swiper-current-title', e.target.innerText);
