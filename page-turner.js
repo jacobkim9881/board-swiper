@@ -31,6 +31,7 @@ function pageTurner(element, targetName) {
   //      nCategory = localStorage.getItem('board-swiper-next-category'); 	    
   //      previousTitle = localStorage.getItem('board-swiper-previous-title');
   //      nextTitle = localStorage.getItem('board-swiper-next-title');
+  console.log(targetUrl)
   pointer.style.display = 'none';	    
   pointer.style.color = 'black'; 
   pointer.innerText = targetUrl === 'undefined' ? 'X' :
@@ -41,7 +42,7 @@ function pageTurner(element, targetName) {
 
   element.addEventListener('scroll', (e) => {    
     pointer.style.top = (window.innerHeight * 1/2 + window.scrollY + targetTop) + 'px';
-    pointer.style.display = targetUrl === 'loading' ? 'none' : 'block';	  
+    pointer.style.display = targetUrl === 'loading' || targetUrl === null ? 'none' : 'block';	  
   });
 
 
