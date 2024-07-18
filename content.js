@@ -22,6 +22,15 @@ window.addEventListener("load", function() {
       getListAClass = siteList[hostUrl]["list-click-event"]["a-class"];	  
 	  listEvent(getListAClass);
     }
+
+    let mode = localStorage.getItem('board-swiper-mode');
+    //console.log(mode)
+    if (mode === 'swiper') {
+      pageMover(document);
+    } else {
+      pageTurner(document, 'next');
+      pageTurner(document, 'previous');
+    }
   } else {
     //giveEvent();
   }
@@ -37,14 +46,7 @@ window.addEventListener("load", function() {
   return;		  
   }
 	*/
-  let mode = localStorage.getItem('board-swiper-mode');
-  //console.log(mode)
-  if (mode === 'swiper') {
-    pageMover(document);
-  } else {
-    pageTurner(document, 'next');
-    pageTurner(document, 'previous');
-  }
+
 }, false);
 
 
