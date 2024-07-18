@@ -1,7 +1,7 @@
 let siteList = 
 	
 	{
-
+/*
 	  "cafe.naver.com":   {
 	    "host" : 'cafe.naver.com',
 	    "custom-function" : 1,
@@ -43,6 +43,7 @@ let siteList =
 	    "wraper-tag": "",
 	    }
 	  },
+	  */
 	  "www.82cook.com":  {
 	    "host" : 'www.82cook.com',
 	    "custom-function" : function() {
@@ -87,7 +88,7 @@ let siteList =
 		    "a-class": "list_subject",
 	    }
 	  },
-	  */
+	  
 	  "www.ddanzi.com": {
 	    "host" : "www.ddanzi.com",
 	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
@@ -118,6 +119,7 @@ let siteList =
 		    "a-class": "deco",	   
 	    }
 	  },
+		*/
 	  "cafe.daum.net": {
 	    "host" : "cafe.daum.net",
 	    "custom-function" : function(aClass, wraperTag, wraperClass, subClass) {
